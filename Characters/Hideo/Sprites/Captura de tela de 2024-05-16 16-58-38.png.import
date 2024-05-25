@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dup1vrnkfmfrv"
-path="res://.godot/imported/Chess.png-8f858e01c1640648fe58847da7a3ede5.ctex"
+uid="uid://54d76hphww6y"
+path="res://.godot/imported/Captura de tela de 2024-05-16 16-58-38.png-988344c27ca901c7b62392503db94e63.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Chess/Chess.png"
-dest_files=["res://.godot/imported/Chess.png-8f858e01c1640648fe58847da7a3ede5.ctex"]
+source_file="res://Characters/Hideo/Sprites/Captura de tela de 2024-05-16 16-58-38.png"
+dest_files=["res://.godot/imported/Captura de tela de 2024-05-16 16-58-38.png-988344c27ca901c7b62392503db94e63.ctex"]
 
 [params]
 
