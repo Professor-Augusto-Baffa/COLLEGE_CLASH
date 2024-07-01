@@ -1,7 +1,7 @@
 [gd_scene load_steps=29 format=3 uid="uid://dk3ev8ug4qnap"]
 
-[ext_resource type="Script" path="res://Characters/Mel/StateMachineMel.cs" id="1_822kq"]
 [ext_resource type="Script" path="res://Characters/Hideo/Hideo.cs" id="1_dgln0"]
+[ext_resource type="Script" path="res://Characters/Hideo/StateMachineHideo.gd" id="2_q0jdv"]
 [ext_resource type="Texture2D" uid="uid://bauhhhvm5rywd" path="res://Characters/Hideo/Sprites/hideo_idle_spritesheet.png" id="2_vbvr7"]
 [ext_resource type="Texture2D" uid="uid://celcsocyg8oot" path="res://Characters/Hideo/Sprites/hideo_kick.png" id="4_a5ujp"]
 [ext_resource type="Texture2D" uid="uid://cnc5weoemkqoa" path="res://Characters/Hideo/Sprites/hideo_walk.png" id="4_t8sdb"]
@@ -177,7 +177,7 @@ size = Vector2(4.0773, 1.40567)
 script = ExtResource("1_dgln0")
 
 [node name="StateMachine" type="Node2D" parent="."]
-script = ExtResource("1_822kq")
+script = ExtResource("2_q0jdv")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -88)

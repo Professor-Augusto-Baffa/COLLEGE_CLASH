@@ -50,6 +50,19 @@ public partial class Hideo : CharacterBody2D
 	// Get the gravity from the project settings to be synced with RigidBody nodes.
 	public float gravity = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
 
+	// Landing variables
+	int landing_frames = 0;
+	int lag_frames = 0;
+
+	// Air variables
+	int jump_squat = 3;
+	bool fastfall = false;
+	int airJump = 0;
+
+	[Export]
+	int airJumpMax = 1;
+
+
 	public override void _Ready()
 	{
 		States = GetNode<Node>("State");
@@ -64,7 +77,7 @@ public partial class Hideo : CharacterBody2D
 		Global global = (Global)GetNode("/root/Global");
 
 		//isInitialized = GlobalScene.isInitialized;
-		
+
 		//GD.Print("global.isInitializedHideo: ", global.isInitializedHideo);
 		if (global.isInitializedHideo)
 		{
@@ -373,6 +386,11 @@ public partial class Hideo : CharacterBody2D
 	public void ResetFrame()
 	{
 		frame = 0;
+	}
+
+	public void resetJumps()
+	{
+		airJump = airJumpMax;
 	}
 
 }
