@@ -73,17 +73,30 @@ _data = {
 
 [sub_resource type="Animation" id="Animation_8mo7t"]
 resource_name = "new_animation3"
+length = 1.9
 tracks/0/type = "value"
 tracks/0/imported = false
-tracks/0/enabled = true
+tracks/0/enabled = false
 tracks/0/path = NodePath(".:visibility_layer")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 1,
+"values": []
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.9),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [0, 1]
+"values": [false, true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jr3kr"]
@@ -257,10 +270,10 @@ root_node = NodePath("LabelChess")
 libraries = {
 "": SubResource("AnimationLibrary_jr3kr")
 }
+autoplay = "new_animation3"
 
 [node name="LabelChess" type="Label" parent="AnimationPlayer3"]
 visible = false
-visibility_layer = 0
 z_index = 1
 offset_top = 944.0
 offset_right = 1920.0
