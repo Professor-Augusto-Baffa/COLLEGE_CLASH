@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://c55kgiasyjjl3"]
+[gd_scene load_steps=15 format=3 uid="uid://c55kgiasyjjl3"]
 
 [ext_resource type="Script" path="res://UI/Titlescreen/Scripts/Play Btn.gd" id="1_0dln6"]
 [ext_resource type="Script" path="res://UI/Titlescreen/Scripts/titlescreen.gd" id="1_1mxfy"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cjt23glg3pcl2" path="res://Art/Hideo Poster.png" id="2_offsk"]
 [ext_resource type="Script" path="res://UI/Titlescreen/Scripts/Option Btn.gd" id="2_q7u70"]
 [ext_resource type="Texture2D" uid="uid://dkmtnqe12nkoq" path="res://Art/Mel Poster.png" id="3_xsejx"]
+[ext_resource type="Texture2D" uid="uid://ry0t4huokbyj" path="res://Art/college.png" id="6_228ap"]
 [ext_resource type="AudioStream" uid="uid://818cqyvvccox" path="res://Music/KenThemeSNES(320).mp3" id="7_hqg2o"]
 
 [sub_resource type="SystemFont" id="SystemFont_b2rks"]
@@ -45,17 +46,8 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.447059, 0.345098, 0.823529, 1)
 
-[node name="HideoPoster" type="Sprite2D" parent="ColorRect"]
-position = Vector2(232.75, 533.51)
-scale = Vector2(1.33086, 1.33086)
-texture = ExtResource("2_offsk")
-
-[node name="MelPoster" type="Sprite2D" parent="ColorRect/HideoPoster"]
-position = Vector2(1089.58, 3.75699)
-texture = ExtResource("3_xsejx")
-
 [node name="Label" type="Label" parent="."]
-layout_mode = 0
+z_index = 1
 offset_left = 457.0
 offset_top = 96.0
 offset_right = 1462.0
@@ -67,6 +59,7 @@ text = "COLLEGE C"
 
 [node name="Label" type="Label" parent="Label"]
 auto_translate_mode = 1
+z_index = 1
 layout_mode = 0
 offset_left = 599.0
 offset_right = 1006.0
@@ -77,6 +70,7 @@ theme_override_font_sizes/font_size = 130
 text = "CLASH"
 
 [node name="HBox Buttons Containers" type="HBoxContainer" parent="."]
+z_index = 1
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -89,6 +83,7 @@ grow_vertical = 2
 alignment = 1
 
 [node name="VBox Buttons Containers" type="VBoxContainer" parent="HBox Buttons Containers"]
+z_index = 1
 layout_mode = 2
 theme_override_constants/separation = 20
 alignment = 1
@@ -160,12 +155,28 @@ shape = SubResource("RectangleShape2D_8wlul")
 stream = ExtResource("7_hqg2o")
 
 [node name="Label2" type="Label" parent="."]
+z_index = 1
 layout_mode = 0
 offset_top = 944.0
 offset_right = 1920.0
 offset_bottom = 1081.0
 theme_override_font_sizes/font_size = 100
 text = "♖♝♘♟♕♚                                ♚♕♟♘♝♖"
+
+[node name="College" type="Sprite2D" parent="."]
+position = Vector2(960, 540)
+scale = Vector2(1.2, 0.963426)
+texture = ExtResource("6_228ap")
+
+[node name="HideoPoster" type="Sprite2D" parent="."]
+position = Vector2(232.75, 609.51)
+scale = Vector2(1.33086, 1.33086)
+texture = ExtResource("2_offsk")
+
+[node name="MelPoster" type="Sprite2D" parent="."]
+position = Vector2(1682.83, 614.51)
+scale = Vector2(1.33086, 1.33086)
+texture = ExtResource("3_xsejx")
 
 [connection signal="focus_entered" from="HBox Buttons Containers/VBox Buttons Containers/Play" to="HBox Buttons Containers/VBox Buttons Containers/Play" method="_on_SinglePlayerButton_focus_entered"]
 [connection signal="focus_exited" from="HBox Buttons Containers/VBox Buttons Containers/Play" to="HBox Buttons Containers/VBox Buttons Containers/Play" method="_on_SinglePlayerButton_focus_exited"]
