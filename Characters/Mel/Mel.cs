@@ -2,6 +2,8 @@ using Godot;
 using Godot.Collections;
 using System;
 using System.Collections.Generic;
+using System.Reflection.PortableExecutable;
+
 
 public partial class Mel : CharacterBody2D
 {
@@ -15,23 +17,25 @@ public partial class Mel : CharacterBody2D
 	// Constants
 	//public Vector2 velocity = new Vector2(0, 0);
 
-	public int dash_duration = 10;
-	public const int RUNSPEED = 340;
-	public const int DASHSPEED = 390;
-	public const int WALKSPEED = 200;
-	public const int GRAVITY = 1800;
-	public const int JUMPFORCE = 500;
-	public const int MAX_JUMPFORCE = 800;
-	public const int DOUBLEJUMPFORCE = 1000;
-	public const int MAXAIRSPEED = 300;
-	public const int AIR_ACCEL = 25;
-	public const int FALLSPEED = 60;
-	public const int FALLINGSPEED = 900;
-	public const int MAXFALLSPEED = 900;
-	public const int TRACTION = 40;
-	public const int ROLL_DISTANCE = 350;
-	public int air_dodge_speed = 500;
-	public const int UP_B_LAUNCHSPEED = 700;
+	/*
+		public int dash_duration = 10;
+		public const int RUNSPEED = 340;
+		public const int DASHSPEED = 390;
+		public const int WALKSPEED = 200;
+		public const int GRAVITY = 1800;
+		public const int JUMPFORCE = 500;
+		public const int MAX_JUMPFORCE = 800;
+		public const int DOUBLEJUMPFORCE = 1000;
+		public const int MAXAIRSPEED = 300;
+		public const int AIR_ACCEL = 25;
+		public const int FALLSPEED = 60;
+		public const int FALLINGSPEED = 900;
+		public const int MAXFALLSPEED = 900;
+		public const int TRACTION = 40;
+		public const int ROLL_DISTANCE = 350;
+		public int air_dodge_speed = 500;
+		public const int UP_B_LAUNCHSPEED = 700;
+		*/
 
 	public object States;
 
@@ -53,6 +57,107 @@ public partial class Mel : CharacterBody2D
 	// Get the gravity from the project settings to be synced with RigidBody nodes.
 	public float gravity = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
 
+	// Globals Variables
+	//public int frame = 0;
+	[Export]
+	public int id;
+
+	// Attributes
+	[Export]
+	public int percentage = 0;
+	[Export]
+	public int stocks = 3;
+	[Export]
+	public int weight = 77;//100;
+	public int freezeframes = 0;
+
+	//Buffers;
+	public int l_cancel = 0;
+	public int cooldown = 0;
+	public int shield_buffer = 0;
+
+	//Knockback
+	public int hdecay;
+	public int vdecay;
+	public int knockback;
+	public int hitstun;
+	public bool connected;
+
+	// Ground Variables
+	//public int dash_duration = 10;
+
+	//Landing Variables
+	public int landing_frames = 0;
+	public int lag_frames = 0;
+
+	//Air Variables
+	public int jump_squat = 3;
+	public bool fastfall = false;
+	public int airJump = 0;
+	[Export]
+	public int airJumpMax = 1;
+
+	//Ledges 
+	public bool last_ledge = false;
+	public int regrab = 30;
+	public bool catche = false;
+
+	//Hitboxes
+	[Export]
+	public PackedScene Hitbox { get; set; }
+
+	[Export]
+	public PackedScene Projectile { get; set; }
+
+	[Export]
+	public PackedScene Grabbox { get; set; }
+
+	public object selfState;
+
+	//Temporary Variables
+	public int hit_pause = 0;
+	public int hit_pause_dur = 0;
+	public Vector2 temp_pos = new Vector2(0, 0);
+	public Vector2 temp_vel = new Vector2(0, 0);
+
+	//Attacks
+	public int projectile_cooldown = 0;
+	public bool grabbing = false;
+
+	//Onready Variables
+	public RayCast2D GroundL;
+	public RayCast2D GroundR;
+	public RayCast2D Ledge_Grab_F;
+	public RayCast2D Ledge_Grab_B;
+	public Node2D gun_pos;
+	public StateMachine states;
+	public AnimationPlayer anim;
+	public Area2D hurtbox;
+	public Area2D parrybox;
+	public Sprite2D sprite;
+
+	//main attributes
+	public int RUNSPEED = 340 * 2;
+	public int DASHSPEED = 390 * 2;
+	public int WALKSPEED = 200 * 2;
+	public int GRAVITY = 1800 * 2;
+	public int JUMPFORCE = 500 * 2;
+	public int MAX_JUMPFORCE = 800 * 2;
+	public int DOUBLEJUMPFORCE = 1000 * 2;
+	public int MAXAIRSPEED = 300 * 2;
+	public int AIR_ACCEL = 25 * 2;
+	public int FALLSPEED = 60 * 2;
+	public int FALLINGSPEED = 900 * 2;
+	public int MAXFALLSPEED = 900 * 2;
+	public int TRACTION = 40 * 2;
+	public int ROLL_DISTANCE = 350 * 2;
+	public int air_dodge_speed = 500 * 2;
+	public int UP_B_LAUNCHSPEED = 700 * 2;
+
+	[Export] public PackedScene hitbox;
+	[Export] public PackedScene grabbox;
+	[Export] public PackedScene projectile;
+
 	public override void _Ready()
 	{
 		States = GetNode<Node>("State");
@@ -69,7 +174,7 @@ public partial class Mel : CharacterBody2D
 		Global global = (Global)GetNode("/root/Global");
 
 		//isInitialized = GlobalScene.isInitialized;
-		
+
 		//GD.Print("global.isInitializedMel: ", global.isInitializedMel);
 		if (global.isInitializedMel)
 		{
@@ -80,6 +185,21 @@ public partial class Mel : CharacterBody2D
 			global.ExecuteOnceMel();
 		}
 		//isBoot = false;
+		///---
+
+		GroundL = GetNode<RayCast2D>("Raycasts/GroundL");
+		GroundR = GetNode<RayCast2D>("Raycasts/GroundR");
+		Ledge_Grab_F = GetNode<RayCast2D>("Raycasts/Ledge_Grab_F");
+		Ledge_Grab_B = GetNode<RayCast2D>("Raycasts/Ledge_Grab_B");
+		gun_pos = GetNode<Node2D>("gun_pos");
+		states = GetNode<StateMachine>("State");
+		anim = GetNode<AnimationPlayer>("Sprite2D/AnimationPlayer");
+		hurtbox = GetNode<Area2D>("Hurtbox");
+		parrybox = GetNode<Area2D>("Parrybox");
+		sprite = GetNode<Sprite2D>("Sprite2D");
+
+		// Define a posição global de gun_pos
+		gun_pos.GlobalPosition = new Vector2(100, 200);
 	}
 
 	public void Save()
@@ -513,6 +633,10 @@ public partial class Mel : CharacterBody2D
 
 		Position += velocity * (float)delta;
 
+		GetNode<Label>("Frames").Text = frame.ToString();
+		GetNode<Label>("Health").Text = percentage.ToString();
+		//selfState = stateMachine.Text;
+
 
 	}
 
@@ -524,10 +648,12 @@ public partial class Mel : CharacterBody2D
 	}
 	*/
 
+	/*	ponte velha
 	public void UpdateFrames(float delta)
-	{
-		frame += 1;
-	}
+		{
+			frame += 1;
+		}
+	*/
 
 	public void Turn(bool direction)
 	{
@@ -540,4 +666,94 @@ public partial class Mel : CharacterBody2D
 		frame = 0;
 	}
 
+	public Node2D CreateHitbox(float width, float height, float damage, float angle, float baseKb, float kbScaling, float duration, string type, Vector2 points, bool angleFlipper, float hitlag = 1)
+	{
+		Node2D hitboxInstance = (Node2D)hitbox.Instantiate();
+		AddChild(hitboxInstance);
+
+		// Rotates the points
+		if (Direction() == 1)
+		{
+			hitboxInstance.Call("set_parameters", width, height, damage, angle, baseKb, kbScaling, duration, type, points, angleFlipper, hitlag);
+		}
+		else
+		{
+			Vector2 flipXPoints = new Vector2(-points.X, points.Y);
+			hitboxInstance.Call("set_parameters", width, height, damage, -angle + 180, baseKb, kbScaling, duration, type, flipXPoints, angleFlipper, hitlag);
+		}
+
+		return hitboxInstance;
+	}
+
+	public int Direction()
+	{
+		// Your implementation of the Direction method
+		return 1; // Placeholder
+	}
+
+	public void CreateGrabbox(float width, float height, float damage, float duration, Vector2 points)
+	{
+		Node2D grabboxInstance = (Node2D)grabbox.Instantiate();
+		AddChild(grabboxInstance);
+
+		// Rotates the points
+		if (Direction() == 1)
+		{
+			grabboxInstance.Call("set_parameters", width, height, damage, duration, points);
+		}
+		else
+		{
+			Vector2 flipXPoints = new Vector2(-points.X, points.Y);
+			grabboxInstance.Call("set_parameters", width, height, damage, duration, flipXPoints);
+		}
+	}
+
+	public void CreateProjectile(float dirX, float dirY, Vector2 point)
+	{
+		Node2D projectileInstance = (Node2D)projectile.Instantiate();
+		projectileInstance.Call("append_to_player_list", this);
+		GetParent().AddChild(projectileInstance);
+
+		// Sets position
+		//gun_pos.SetPosition(point);
+		// Ou se desejar definir a posição localmente
+		gun_pos.Position = point;
+
+		// Flips the direction
+		if (Direction() == 1)
+		{
+			projectileInstance.Call("dir", dirX, dirY);
+			projectileInstance.GlobalPosition = gun_pos.GlobalPosition;
+		}
+		else
+		{
+			gun_pos.Position = new Vector2(-gun_pos.Position.X, gun_pos.Position.Y);
+			projectileInstance.Call("dir", -dirX, dirY);
+			projectileInstance.GlobalPosition = gun_pos.GlobalPosition;
+		}
+	}
+
+	public void UpdateFrames(float delta)
+	{
+		frame += Mathf.FloorToInt(delta * 60);
+		l_cancel -= Mathf.FloorToInt(delta * 60);
+		l_cancel = Mathf.Clamp(l_cancel, 0, l_cancel);
+		cooldown -= Mathf.FloorToInt(delta * 60);
+		cooldown = Mathf.Clamp(cooldown, 0, cooldown);
+
+		if (!Input.IsActionPressed($"shield_{id}"))
+		{
+			shield_buffer = 0;
+		}
+		else
+		{
+			shield_buffer += Mathf.FloorToInt(delta * 60);
+		}
+
+		if (freezeframes > 0)
+		{
+			freezeframes -= Mathf.FloorToInt(delta * 60);
+		}
+		freezeframes = Mathf.Clamp(freezeframes, 0, freezeframes);
+	}
 }
