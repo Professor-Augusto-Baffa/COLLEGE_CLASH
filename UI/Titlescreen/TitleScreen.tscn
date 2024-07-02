@@ -278,6 +278,8 @@ z_index = 1
 offset_top = 944.0
 offset_right = 1920.0
 offset_bottom = 1081.0
+theme_override_colors/font_color = Color(0.059126, 0.0591259, 0.0591259, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 100
 text = "♖♝♘♟♕♚                                ♚♕♟♘♝♖"
 
