@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/KenThemeSNES(320).mp3-21400cf5a8e434a035dab9a
 
 [params]
 
-loop=false
+loop=true
 loop_offset=0
 bpm=0
 beat_count=0
