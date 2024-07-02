@@ -1,6 +1,6 @@
 extends Button
 
-@export var path = ''
+@export var path = 'res://Stages/Test Stage.tscn'
 
 func _on_SinglePlayerButton_focus_entered():
 	add_theme_color_override("font_outline_color", Color(1, 0.32549020648003, 0))

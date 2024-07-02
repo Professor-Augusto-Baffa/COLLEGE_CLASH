@@ -2,6 +2,8 @@ extends Control
 
 var current_state = States.PLAY
 @onready var getpointer = $Pointer
+@onready var music_player = get_node("Music") as AudioStreamPlayer
+
 
 enum States{
 	PLAY,
@@ -41,6 +43,9 @@ func _process(delta):
 			if Input.is_action_just_pressed("down_1") or Input.is_action_just_pressed("down_2"):
 				current_state = States.PLAY
 
+func _ready():
+	music_player.play()
+
 func play():
 	getpointer.global_position = Vector2(500,415)
 
@@ -49,3 +54,4 @@ func options():
 
 func exit():
 	getpointer.global_position = Vector2(500,657)
+	get_tree().quit()
