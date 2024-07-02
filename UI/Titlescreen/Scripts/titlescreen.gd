@@ -3,6 +3,8 @@ extends Control
 var current_state = States.PLAY
 @onready var getpointer = $Pointer
 @onready var music_player = get_node("Music") as AudioStreamPlayer
+@onready var clash_sound = get_node("Clash") as AudioStreamPlayer
+@onready var clash_timer = $Timer 
 
 
 enum States{
@@ -45,6 +47,10 @@ func _process(delta):
 
 func _ready():
 	music_player.play()
+	clash_timer.start()
+	
+func _on_timer_timeout() -> void:
+	clash_sound.play()
 
 func play():
 	getpointer.global_position = Vector2(500,415)

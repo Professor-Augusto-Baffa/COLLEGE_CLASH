@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://c55kgiasyjjl3"]
+[gd_scene load_steps=22 format=3 uid="uid://c55kgiasyjjl3"]
 
 [ext_resource type="Script" path="res://UI/Titlescreen/Scripts/Play Btn.gd" id="1_0dln6"]
 [ext_resource type="Script" path="res://UI/Titlescreen/Scripts/titlescreen.gd" id="1_1mxfy"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://dkmtnqe12nkoq" path="res://Art/Mel Poster.png" id="3_xsejx"]
 [ext_resource type="Texture2D" uid="uid://ry0t4huokbyj" path="res://Art/college.png" id="6_228ap"]
 [ext_resource type="AudioStream" uid="uid://818cqyvvccox" path="res://Music/KenThemeSNES(320).mp3" id="7_hqg2o"]
+[ext_resource type="AudioStream" uid="uid://3xdpnco2kot3" path="res://Music/SFX/morph-sound-effects-101soundboards (mp3cut.net).mp3" id="9_w2par"]
 
 [sub_resource type="SystemFont" id="SystemFont_b2rks"]
 font_names = PackedStringArray("Arial")
@@ -28,6 +29,68 @@ size = Vector2(600, 100)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8wlul"]
 
+[sub_resource type="Animation" id="Animation_offg1"]
+resource_name = "new_animation"
+length = 1.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationPlayer/Label:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5, 1.7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-564, 96), Vector2(395, 96), Vector2(375, 96)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ajevr"]
+_data = {
+"new_animation": SubResource("Animation_offg1")
+}
+
+[sub_resource type="Animation" id="Animation_gvs0k"]
+resource_name = "new_animation2"
+length = 1.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationPlayer2/Label2:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5, 1.7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(2184, 96), Vector2(960, 96), Vector2(980, 96)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ugkdc"]
+_data = {
+"new_animation2": SubResource("Animation_gvs0k")
+}
+
+[sub_resource type="Animation" id="Animation_8mo7t"]
+resource_name = "new_animation3"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:visibility_layer")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jr3kr"]
+_data = {
+"new_animation3": SubResource("Animation_8mo7t")
+}
+
 [node name="Titlescreen" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -45,30 +108,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.447059, 0.345098, 0.823529, 1)
-
-[node name="Label" type="Label" parent="."]
-z_index = 1
-layout_mode = 0
-offset_left = 457.0
-offset_top = 96.0
-offset_right = 1462.0
-offset_bottom = 277.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 30
-theme_override_font_sizes/font_size = 130
-text = "COLLEGE C"
-
-[node name="Label" type="Label" parent="Label"]
-auto_translate_mode = 1
-z_index = 1
-layout_mode = 0
-offset_left = 599.0
-offset_right = 1006.0
-offset_bottom = 181.0
-theme_override_colors/font_color = Color(1, 0, 0, 1)
-theme_override_constants/outline_size = 30
-theme_override_font_sizes/font_size = 130
-text = "CLASH"
 
 [node name="HBox Buttons Containers" type="HBoxContainer" parent="."]
 z_index = 1
@@ -155,15 +194,6 @@ shape = SubResource("RectangleShape2D_8wlul")
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_hqg2o")
 
-[node name="Label2" type="Label" parent="."]
-z_index = 1
-layout_mode = 0
-offset_top = 944.0
-offset_right = 1920.0
-offset_bottom = 1081.0
-theme_override_font_sizes/font_size = 100
-text = "♖♝♘♟♕♚                                ♚♕♟♘♝♖"
-
 [node name="College" type="Sprite2D" parent="."]
 position = Vector2(960, 540)
 scale = Vector2(1.2, 0.963426)
@@ -178,6 +208,65 @@ texture = ExtResource("2_offsk")
 position = Vector2(1682.83, 614.51)
 scale = Vector2(1.33086, 1.33086)
 texture = ExtResource("3_xsejx")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ajevr")
+}
+autoplay = "new_animation"
+
+[node name="Label" type="Label" parent="AnimationPlayer"]
+z_index = 1
+offset_left = 395.0
+offset_top = 96.0
+offset_right = 959.0
+offset_bottom = 277.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 30
+theme_override_font_sizes/font_size = 130
+text = "COLLEGE"
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ugkdc")
+}
+autoplay = "new_animation2"
+
+[node name="Label2" type="Label" parent="AnimationPlayer2"]
+auto_translate_mode = 1
+z_index = 1
+offset_left = 960.0
+offset_top = 96.0
+offset_right = 1367.0
+offset_bottom = 277.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_constants/outline_size = 30
+theme_override_font_sizes/font_size = 130
+text = "CLASH"
+
+[node name="Clash" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_w2par")
+volume_db = 24.0
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
+[node name="AnimationPlayer3" type="AnimationPlayer" parent="."]
+root_node = NodePath("LabelChess")
+libraries = {
+"": SubResource("AnimationLibrary_jr3kr")
+}
+
+[node name="LabelChess" type="Label" parent="AnimationPlayer3"]
+visible = false
+visibility_layer = 0
+z_index = 1
+offset_top = 944.0
+offset_right = 1920.0
+offset_bottom = 1081.0
+theme_override_font_sizes/font_size = 100
+text = "♖♝♘♟♕♚                                ♚♕♟♘♝♖"
 
 [connection signal="focus_entered" from="HBox Buttons Containers/VBox Buttons Containers/Play" to="HBox Buttons Containers/VBox Buttons Containers/Play" method="_on_SinglePlayerButton_focus_entered"]
 [connection signal="focus_exited" from="HBox Buttons Containers/VBox Buttons Containers/Play" to="HBox Buttons Containers/VBox Buttons Containers/Play" method="_on_SinglePlayerButton_focus_exited"]
@@ -194,3 +283,4 @@ texture = ExtResource("3_xsejx")
 [connection signal="pressed" from="HBox Buttons Containers/VBox Buttons Containers/Exit" to="HBox Buttons Containers/VBox Buttons Containers/Exit" method="_on_pressed"]
 [connection signal="area_entered" from="HBox Buttons Containers/VBox Buttons Containers/Exit/Area2D" to="HBox Buttons Containers/VBox Buttons Containers/Exit" method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="HBox Buttons Containers/VBox Buttons Containers/Exit/Area2D" to="HBox Buttons Containers/VBox Buttons Containers/Exit" method="_on_area_2d_area_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
