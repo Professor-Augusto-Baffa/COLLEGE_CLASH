@@ -1,7 +1,7 @@
 extends Button
 
 @export var path = ''
-@onready var label = get_node("Label")
+@onready var label = get_node("/root/Titlescreen/AnimationPlayer/Label")
 
 func _on_OptionsButton_focus_entered():
 	add_theme_color_override("font_outline_color", Color(1, 0.32549020648003, 0))
