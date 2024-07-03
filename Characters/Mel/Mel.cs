@@ -3,6 +3,7 @@ using Godot.Collections;
 using System;
 using System.Collections.Generic;
 using System.Reflection.PortableExecutable;
+using System.Runtime.CompilerServices;
 
 
 public partial class Mel : CharacterBody2D
@@ -130,7 +131,7 @@ public partial class Mel : CharacterBody2D
 	public RayCast2D Ledge_Grab_F;
 	public RayCast2D Ledge_Grab_B;
 	public Node2D gun_pos;
-	public StateMachine states;
+	public Label states;
 	public AnimationPlayer anim;
 	public Area2D hurtbox;
 	public Area2D parrybox;
@@ -192,7 +193,7 @@ public partial class Mel : CharacterBody2D
 		Ledge_Grab_F = GetNode<RayCast2D>("Raycasts/Ledge_Grab_F");
 		Ledge_Grab_B = GetNode<RayCast2D>("Raycasts/Ledge_Grab_B");
 		gun_pos = GetNode<Node2D>("gun_pos");
-		states = GetNode<StateMachine>("State");
+		states = GetNode<Label>("State");
 		anim = GetNode<AnimationPlayer>("Sprite2D/AnimationPlayer");
 		hurtbox = GetNode<Area2D>("Hurtbox");
 		parrybox = GetNode<Area2D>("Parrybox");
@@ -635,7 +636,7 @@ public partial class Mel : CharacterBody2D
 
 		GetNode<Label>("Frames").Text = frame.ToString();
 		GetNode<Label>("Health").Text = percentage.ToString();
-		//selfState = stateMachine.Text;
+		selfState = states.Text;
 
 
 	}
@@ -655,18 +656,31 @@ public partial class Mel : CharacterBody2D
 		}
 	*/
 
+	/* ponte velha
 	public void Turn(bool direction)
-	{
-		int dir = direction ? -1 : 1;
-		GetNode<AnimatedSprite2D>("Sprite").FlipH = direction;
-	}
+		{
+			int dir = direction ? -1 : 1;
+			GetNode<AnimatedSprite2D>("Sprite").FlipH = direction;
+		}
+	*/
 
 	public void ResetFrame()
 	{
 		frame = 0;
 	}
 
-	public Node2D CreateHitbox(float width, float height, float damage, float angle, float baseKb, float kbScaling, float duration, string type, Vector2 points, bool angleFlipper, float hitlag = 1)
+	public void ResetJumps()
+	{
+		airJump = airJumpMax;
+	}
+
+	public void ResetLedge()
+	{
+		last_ledge = false;
+
+	}
+
+	public Node2D CreateHitbox(float width, float height, float damage, float angle, float baseKb, float kbScaling, float duration, string type, Vector2 points, float angleFlipper, float hitlag = 1)
 	{
 		Node2D hitboxInstance = (Node2D)hitbox.Instantiate();
 		AddChild(hitboxInstance);
@@ -687,8 +701,14 @@ public partial class Mel : CharacterBody2D
 
 	public int Direction()
 	{
-		// Your implementation of the Direction method
-		return 1; // Placeholder
+		if (Ledge_Grab_F.GetCollisionPoint().X > 0)
+		{
+			return 1;
+		}
+		else
+		{
+			return -1;
+		}
 	}
 
 	public void CreateGrabbox(float width, float height, float damage, float duration, Vector2 points)
@@ -756,4 +776,257 @@ public partial class Mel : CharacterBody2D
 		}
 		freezeframes = Mathf.Clamp(freezeframes, 0, freezeframes);
 	}
+
+	public void Turn(bool direction)
+	{
+		int dir = 0;
+		if (direction)
+		{
+			dir = -1;
+		}
+		else
+		{
+			dir = 1;
+		}
+		GetNode<AnimatedSprite2D>("Sprite").FlipH = direction;
+
+		Ledge_Grab_F.TargetPosition = new Vector2(dir * Mathf.Abs(Ledge_Grab_F.TargetPosition.X), Ledge_Grab_F.TargetPosition.Y);
+		Ledge_Grab_F.Position = new Vector2(dir * Mathf.Abs(Ledge_Grab_F.Position.X), Ledge_Grab_F.Position.Y);
+		Ledge_Grab_B.Position = new Vector2(dir * Mathf.Abs(Ledge_Grab_B.Position.X), Ledge_Grab_B.Position.Y);
+		Ledge_Grab_B.TargetPosition = new Vector2(-dir * Mathf.Abs(Ledge_Grab_F.TargetPosition.X), Ledge_Grab_F.TargetPosition.Y);
+	}
+
+	void HitPause(float delta)
+	{
+		if (hit_pause < hit_pause_dur)
+		{
+			GlobalPosition = temp_pos;
+			hit_pause += Mathf.FloorToInt((1 * delta) * 60);
+		}
+		else
+		{
+			if (temp_vel != new Vector2(0, 0))
+			{
+				Velocity = temp_vel;
+				//velocity.x = temp_vel.x;
+				//velocity.y = temp_vel.y;
+				temp_vel = new Vector2(0, 0);
+			}
+			hit_pause_dur = 0;
+			hit_pause = 0;
+		}
+	}
+
+	// Special Attacks
+	bool NeutralSpecial()
+	{
+		if (frame == 4)
+		{
+			CreateProjectile(1, 0, new Vector2(50, 0));
+		}
+		if (frame >= 14)
+		{
+			return true;
+		}
+		return false;
+	}
+
+	// Tilt Attacks
+	bool Jab()
+	{
+		if (frame == 2)
+		{
+			CreateGrabbox(30, 40, 0, 3, new Vector2(64, 0));
+		}
+		if (frame == 6)
+		{
+			if (grabbing)
+			{
+				return false;
+			}
+			// Uncomment to create grabbox if needed:
+			// CreateGrabbox(40, 50, 0, 13, new Vector2(64, 0));
+		}
+		if (frame >= 20)
+		{
+			return true;
+		}
+		return false;
+	}
+
+	bool Jab_1()
+	{
+		if (frame == 1)
+		{
+			grabbing = false;
+			CreateGrabbox(30, 40, 0, 13, new Vector2(64, 0));
+		}
+		if (frame == 14)
+		{
+			CreateHitbox(40, 20, 8, 90, 8000, 1, 5, "normal", new Vector2(48, 8), 0, 0);
+		}
+		if (frame == 26 || frame == 32 || frame == 39)
+		{
+			CreateProjectile(0, -1, new Vector2(34.089f, -70.645f));
+		}
+		if (frame == 43)
+		{
+			return true;
+		}
+		return false;
+	}
+
+	bool DownTilt()
+	{
+		if (frame == 5)
+		{
+			CreateHitbox(40, 20, 8, 90, 70, 50, 3, "normal", new Vector2(64, 32), 0, 1);
+			// My version: CreateHitbox(40, 20, 8, 90, 3, 120, 3, "normal", new Vector2(64, 32), 0, 1);
+		}
+		if (frame >= 10)
+		{
+			return true;
+		}
+		return false;
+	}
+
+	bool UpTilt()
+	{
+		if (frame == 5)
+		{
+			CreateHitbox(48, 68, 8, 76, 20, 110, 3, "normal", new Vector2(-22, -15), 0, 1);
+			// My version: CreateHitbox(48, 68, 6, 76, 8, 140, 4, "normal", new Vector2(-22, -15), 0, 1);
+		}
+		if (frame >= 12)
+		{
+			return true;
+		}
+		return false;
+	}
+
+	bool ForwardTilt()
+	{
+		if (frame == 3)
+		{
+			CreateHitbox(52, 20, 6, 120, 40, 80, 3, "normal", new Vector2(22, 8), 0, 1);
+			// My version: CreateHitbox(52, 20, 7, 120, 13, 100, 3, "normal", new Vector2(22, 8), 0, 0.5f);
+		}
+		if (frame >= 8)
+		{
+			return true;
+		}
+		return false;
+	}
+
+	// Air attacks
+	bool Nair()
+	{
+		if (frame == 1)
+		{
+			CreateHitbox(56, 56, 12, 361, 0, 100, 3, "normal", new Vector2(0, 0), 0, 0.4f);
+		}
+		if (frame > 1)
+		{
+			if (connected)
+			{
+				if (frame == 36)
+				{
+					connected = false;
+					return true;
+				}
+			}
+			else
+			{
+				if (frame == 5)
+				{
+					CreateHitbox(46, 56, 9, 361, 0, 100, 10, "normal", new Vector2(0, 0), 0, 0.1f);
+				}
+				if (frame == 36)
+				{
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
+	bool Uair()
+	{
+		if (frame == 2)
+		{
+			CreateHitbox(32, 36, 5, 90, 130, 0, 2, "normal", new Vector2(0, -45), 0, 1);
+		}
+		if (frame == 6)
+		{
+			CreateHitbox(56, 46, 10, 90, 20, 108, 3, "normal", new Vector2(0, -48), 0, 2);
+		}
+		if (frame == 15)
+		{
+			return true;
+		}
+		return false;
+	}
+
+	bool Bair()
+	{
+		if (frame == 2)
+		{
+			CreateHitbox(52, 55, 15, 45, 1, 100, 5, "normal", new Vector2(-47, 7), 6, 1);
+		}
+		if (frame > 1)
+		{
+			if (connected)
+			{
+				if (frame == 18)
+				{
+					connected = false;
+					return true;
+				}
+			}
+			else
+			{
+				if (frame == 7)
+				{
+					CreateHitbox(52, 55, 5, 45, 3, 140, 10, "normal", new Vector2(-47, 7), 6, 1);
+				}
+				if (frame == 18)
+				{
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
+	bool Fair()
+	{
+		if (frame == 2 || frame == 11)
+		{
+			CreateHitbox(35, 47, 3, 76, 10, 150, 3, "normal", new Vector2(60, -7), 0, 1);
+		}
+		if (frame == 18)
+		{
+			return true;
+		}
+		return false;
+	}
+
+	bool Dair()
+	{
+		if (frame == 2 || frame == 5 || frame == 9 || frame == 14)
+		{
+			CreateHitbox(36, 58, 2, 290, 140, 0, 2, "normal", new Vector2(28, 17), 0, 1);
+		}
+		if (frame == 17)
+		{
+			return true;
+		}
+		return false;
+	}
+
+	public void PlayAnimation(string animationName)
+	{
+		anim.Play(animationName);
+	}
+
 }

@@ -1,4 +1,4 @@
-"""extends StateMachine
+extends StateMachine
 @onready var id = get_parent().id
 
 func _ready():
@@ -44,11 +44,11 @@ func _ready():
 	call_deferred("set_state", states.STAND)
 
 func state_logic(delta):
-	parent.updateframes(delta)
-	parent._physics_process(delta)
+	parent.UpdateFrames(delta)
+	parent._PhysicsProcess(delta)
 	if parent.regrab > 0:
 		parent.regrab-=1
-	parent._hit_pause(delta)
+	parent.HitPause(delta)
 
 func get_transition(delta):
 	# TODOConverter40 looks that snap in Godot 4.0 is float, not vector like in Godot 3 - previous value `Vector2.ZERO`
@@ -990,119 +990,119 @@ func get_transition(delta):
 func enter_state(new_state, old_state):
 	match new_state:
 		states.STAND:
-			parent.play_animation('IDLE')
+			parent.PlayAnimation('IDLE')
 			parent.states.text = str('STAND')
 		states.DASH:
-			parent.play_animation('DASH')
+			parent.PlayAnimation('DASH')
 			parent.states.text = str('DASH')
 		states.MOONWALK:
-			parent.play_animation('WALK')
+			parent.PlayAnimation('WALK')
 			parent.states.text = str('MOONWALK')
 		states.WALK:
-			parent.play_animation('WALK')
+			parent.PlayAnimation('WALK')
 			parent.states.text = str('WALK')
 		states.TURN:
-			parent.play_animation('TURN')
+			parent.PlayAnimation('TURN')
 			parent.states.text = str('TURN')
 		states.CROUCH:
-			parent.play_animation('CROUCH')
+			parent.PlayAnimation('CROUCH')
 			parent.states.text = str('CROUCH')
 		states.RUN:
-			parent.play_animation('RUN')
+			parent.PlayAnimation('RUN')
 			parent.states.text = str('RUN')
 		states.JUMP_SQUAT:
-			parent.play_animation('JUMP_SQUAT')
+			parent.PlayAnimation('JUMP_SQUAT')
 			parent.states.text = str('JUMP_SQUAT')
 		states.SHORT_HOP:
-			parent.play_animation('AIR')
+			parent.PlayAnimation('AIR')
 			parent.states.text = str('SHORT_HOP')
 		states.FULL_HOP:
-			parent.play_animation('AIR')
+			parent.PlayAnimation('AIR')
 			parent.states.text = str('FULL_HOP')
 		states.AIR:
-			parent.play_animation('AIR')
+			parent.PlayAnimation('AIR')
 			parent.states.text = str('AIR')
 		states.LANDING:
-			parent.play_animation('LANDING')
+			parent.PlayAnimation('LANDING')
 			parent.states.text = str('LANDING')	
 		states.AIR_DODGE:
-			parent.play_animation('AIR_DODGE')
+			parent.PlayAnimation('AIR_DODGE')
 			parent.states.text = str('AIR_DODGE')
 		states.FREE_FALL:
-			parent.play_animation('FREE_FALL')
+			parent.PlayAnimation('FREE_FALL')
 			parent.states.text = str('FREE_FALL')
 		states.LEDGE_CATCH:
-			parent.play_animation('LEDGE_CATCH')
+			parent.PlayAnimation('LEDGE_CATCH')
 			parent.states.text = str('LEDGE_CATCH')
 		states.LEDGE_HOLD:
-			parent.play_animation('LEDGE_CATCH')
+			parent.PlayAnimation('LEDGE_CATCH')
 			parent.states.text = str('LEDGE_HOLD')
 		states.LEDGE_JUMP:
-			parent.play_animation('AIR')
+			parent.PlayAnimation('AIR')
 			parent.states.text = str('LEDGE_JUMP')
 		states.LEDGE_CLIMB:
-			parent.play_animation('ROLL_FORWARD')
+			parent.PlayAnimation('ROLL_FORWARD')
 			parent.states.text = str('LEDGE_CLIMB')
 		states.LEDGE_ROLL:
-			parent.play_animation('ROLL_FORWARD')
+			parent.PlayAnimation('ROLL_FORWARD')
 			parent.states.text = str('LEDGE_ROLL')
 		states.HITFREEZE:
-			parent.play_animation('HITSTUN')
+			parent.PlayAnimation('HITSTUN')
 			parent.states.text = str('HITFREEZE')
 		states.HITSTUN:
-			parent.play_animation('HITSTUN')
+			parent.PlayAnimation('HITSTUN')
 			parent.states.text = str('HITSTUN')
 		states.PARRY:
-			parent.play_animation('PARRY')
+			parent.PlayAnimation('PARRY')
 			parent.states.text = str('PARRY')
 		states.ROLL_RIGHT:
-			parent.play_animation('TECH_GROUND')
+			parent.PlayAnimation('TECH_GROUND')
 			parent.states.text = str('ROLL_RIGHT')
 		states.ROLL_LEFT:
-			parent.play_animation('TECH_GROUND')
+			parent.PlayAnimation('TECH_GROUND')
 			parent.states.text = str('ROLL_LEFT')
 		states.GRABBED:
-			parent.play_animation('HITSTUN')
+			parent.PlayAnimation('HITSTUN')
 			parent.states.text = str('GRABBED')
 		states.STUNNED:
-			parent.play_animation('HITSTUN')
+			parent.PlayAnimation('HITSTUN')
 			parent.states.text = str('STUNNED')
 		states.AIR_ATTACK:
 			parent.states.text = str('AIR_ATTACK')
 		states.NEUTRAL_SPECIAL:
-			parent.play_animation('NEUTRAL_SPECIAL')
+			parent.PlayAnimation('NEUTRAL_SPECIAL')
 			parent.states.text = str('NEUTRAL_SPECIAL')
 		states.NAIR:
-			parent.play_animation('NAIR')
+			parent.PlayAnimation('NAIR')
 			parent.states.text = str('NAIR')
 		states.UAIR:
-			parent.play_animation('UAIR')
+			parent.PlayAnimation('UAIR')
 			parent.states.text = str('UAIR')
 		states.BAIR:
-			parent.play_animation('BAIR')
+			parent.PlayAnimation('BAIR')
 			parent.states.text = str('BAIR')
 		states.FAIR:
-			parent.play_animation('FAIR')
+			parent.PlayAnimation('FAIR')
 			parent.states.text = str('FAIR')
 		states.DAIR:
-			parent.play_animation('DAIR')
+			parent.PlayAnimation('DAIR')
 			parent.states.text = str('DAIR')
 		states.GROUND_ATTACK:
 			parent.states.text = str('GROUND_ATTACK')
 		states.JAB:
-			parent.play_animation('JAB')
+			parent.PlayAnimation('JAB')
 			parent.states.text = str('JAB')
 		states.JAB_1:
-			parent.play_animation('JAB_1')
+			parent.PlayAnimation('JAB_1')
 			parent.states.text = str('JAB_1')
 		states.DOWN_TILT:
-			parent.play_animation('DOWN_TILT')
+			parent.PlayAnimation('DOWN_TILT')
 			parent.states.text = str('DOWN_TILT')
 		states.FORWARD_TILT:
-			parent.play_animation('FORWARD_TILT')
+			parent.PlayAnimation('FORWARD_TILT')
 			parent.states.text = str('FORWARD_TILT')
 		states.UP_TILT:
-			parent.play_animation('UP_TILT')
+			parent.PlayAnimation('UP_TILT')
 			parent.states.text = str('UP_TILT')
 
 func exit_state(old_state, new_state):
@@ -1286,4 +1286,4 @@ func hitfreeze(duration,knocback):
 	hd = knocback[2]
 	vd = knocback[3]
 
-"""
+

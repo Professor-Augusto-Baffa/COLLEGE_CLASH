@@ -1,4 +1,4 @@
-using Godot;
+/*using Godot;
 using System;
 using System.ComponentModel;
 
@@ -167,4 +167,4 @@ public partial class StateMachineHideo : StateMachine
 		return false;
 	}
 	*/
-}
+//}
