@@ -13,6 +13,8 @@ config_version=5
 config/name="Fighting Game"
 run/main_scene="res://UI/Titlescreen/TitleScreen.tscn"
 config/features=PackedStringArray("4.3", "C#", "GL Compatibility")
+boot_splash/bg_color=Color(0, 0, 0, 1)
+boot_splash/image="res://Art/Loading.png"
 config/icon="res://icon.svg"
 
 [autoload]
@@ -23,6 +25,7 @@ Global="res://Global.cs"
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
+window/size/mode=3
 window/stretch/mode="canvas_items"
 
 [dotnet]
