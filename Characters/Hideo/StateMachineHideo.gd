@@ -2,6 +2,8 @@ extends StateMachine
 @onready var id = get_parent().id
 
 func _ready():
+	#print("1) O parent é: " + str(get_parent().name))
+
 	add_state('STAND')
 	add_state('JUMP_SQUAT')
 	add_state('SHORT_HOP')
@@ -989,8 +991,16 @@ func get_transition(delta):
 func enter_state(new_state, old_state):
 	match new_state:
 		states.STAND:
+			#print("2) O parent é: " + str(get_parent().name))
 			parent.PlayAnimation('IDLE')
+			#print("3) O parent é: " + str(get_parent().name))
+			#if parent.states != null:
+				#print("parent.states" + str(parent.states))
+			#else: 
+				#print("parent.states é null")
+				
 			parent.states.text = str('STAND')
+			
 		states.DASH:
 			parent.PlayAnimation('DASH')
 			parent.states.text = str('DASH')
@@ -1167,9 +1177,6 @@ func AIRMOVEMENT():
 			parent.velocity.x += - parent.AIR_ACCEL / 5
 
 func Landing():
-	for key in states.keys():
-		print("%s: %s" % [key, states[key]])
-	
 	if state_includes([states.AIR, states.NAIR, states.UAIR, states.BAIR, states.FAIR, states.DAIR, states.FREE_FALL]):
 		if (parent.GroundL.is_colliding() or parent.GroundR.is_colliding()) and parent.velocity.y >= 0:
 				var collider = parent.GroundL.get_collider()

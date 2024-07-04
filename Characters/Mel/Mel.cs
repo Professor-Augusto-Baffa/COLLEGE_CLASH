@@ -38,7 +38,7 @@ public partial class Mel : CharacterBody2D
 		public const int UP_B_LAUNCHSPEED = 700;
 		*/
 
-	public object States;
+	//public object States;
 
 	public Label framesLabel;
 	public int frame = 0;
@@ -161,7 +161,7 @@ public partial class Mel : CharacterBody2D
 
 	public override void _Ready()
 	{
-		States = GetNode<Node>("State");
+		//States = GetNode<Node>("State");
 		ScreenSize = GetViewportRect().Size;
 		GetNode<AnimatedSprite2D>("Sprite").Play("idle");
 		//sceneSwitcher = GetNode<FightSceneSwitcher>("FightSceneSwitcher");
@@ -194,6 +194,7 @@ public partial class Mel : CharacterBody2D
 		Ledge_Grab_B = GetNode<RayCast2D>("Raycasts/Ledge_Grab_B");
 		gun_pos = GetNode<Node2D>("gun_pos");
 		states = GetNode<Label>("State");
+		GD.Print("Informações sobre states: ", states, states.Text);
 		anim = GetNode<AnimationPlayer>("Sprite2D/AnimationPlayer");
 		hurtbox = GetNode<Area2D>("Hurtbox");
 		parrybox = GetNode<Area2D>("Parrybox");
@@ -636,6 +637,7 @@ public partial class Mel : CharacterBody2D
 
 		GetNode<Label>("Frames").Text = frame.ToString();
 		GetNode<Label>("Health").Text = percentage.ToString();
+		GD.Print("states.Text é : " + states.Text);
 		selfState = states.Text;
 
 

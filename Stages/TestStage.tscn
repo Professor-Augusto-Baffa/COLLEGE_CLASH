@@ -43,8 +43,7 @@ offset_left = 892.0
 offset_top = 790.0
 offset_right = 932.0
 offset_bottom = 813.0
-text = "floor
-"
+text = "floor"
 
 [node name="Wall" type="StaticBody2D" parent="."]
 collision_layer = 2

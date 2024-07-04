@@ -1,6 +1,6 @@
 extends Button
 
-@export var path = 'res://Stages/Test Stage.tscn'
+@export var path = 'res://Global.tscn'
 
 func _on_SinglePlayerButton_focus_entered():
 	add_theme_color_override("font_outline_color", Color(1, 0.32549020648003, 0))
@@ -10,6 +10,7 @@ func _on_SinglePlayerButton_focus_exited():
 
 func _on_pressed():
 	if (path != ''):
+		print("Changing scene to: " + path)
 		get_tree().change_scene_to_file(path)
 
 

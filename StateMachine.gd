@@ -27,8 +27,20 @@ func exit_state(old_state, new_state):
 	pass
 
 func set_state(new_state):
+	print("------------------------")
+	print("new_state: " + str(new_state))
+	print("state: " + str(state))
+	print("previous_state: " + str(previous_state))
+	
 	previous_state = state
+	print("***previous_state = state***")
+	print("previous_state: " + str(previous_state))
+	
 	state = new_state
+	print("***state = new_state***")
+	print("state: " + str(state))
+	print("previous_state: " + str(previous_state))
+	print("------------------------")
 	
 	if previous_state !=null:
 		exit_state(previous_state, new_state)
