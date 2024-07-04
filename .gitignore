@@ -1,2 +1,5 @@
 # Godot 4+ specific ignores
 .godot/
+Godot_v4.3-dev4_mono_linux_x86_64/
+
+.fake
