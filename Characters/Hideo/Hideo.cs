@@ -259,9 +259,9 @@ public partial class Hideo : CharacterBody2D
 		var animatedSprite2D = GetNode<AnimatedSprite2D>("Sprite");
 		string anim_name = animatedSprite2D.Animation;
 
-		if (anim_name == "kick" || anim_name == "uppercut")
+		if (anim_name == "KICK" || anim_name == "UPPERCUT")
 		{
-			if (!animatedSprite2D.Animation.Equals("walk"))
+			if (!animatedSprite2D.Animation.Equals("WALK"))
 			{
 				animatedSprite2D.Play("IDLE");
 			}
@@ -366,7 +366,7 @@ public partial class Hideo : CharacterBody2D
 		
 		if (velocity.X != 0)
 		{
-			animatedSprite2D.Animation = "walk";
+			animatedSprite2D.Animation = "WALK";
 			animatedSprite2D.FlipV = false;
 
 			// See the note below about boolean assignment.
@@ -393,11 +393,11 @@ public partial class Hideo : CharacterBody2D
 		//	velocity.Y -= 1;
 
 
-		if (Input.IsActionPressed("up_2") && !animatedSprite2D.Animation.Equals("uppercut"))
-			animatedSprite2D.Play("uppercut");
+		if (Input.IsActionPressed("up_2") && !animatedSprite2D.Animation.Equals("UPPERCUT"))
+			animatedSprite2D.Play("UPPERCUT");
 
-		if (Input.IsActionPressed("down_2") && !animatedSprite2D.Animation.Equals("kick"))
-			animatedSprite2D.Play("kick");
+		if (Input.IsActionPressed("down_2") && !animatedSprite2D.Animation.Equals("KICK"))
+			animatedSprite2D.Play("KICK");
 
 		//if (Input.IsActionPressed("change_scene"))
 		//SwitchToNextScene();
@@ -406,7 +406,7 @@ public partial class Hideo : CharacterBody2D
 				Get the first texture of the wanted animation (in this case, walk, you can also get the size
 				in differents cases)
 				If your animation frames has different sizes, use $AnimatedSprite2D.frame instead of 0
-			var texture       = sprite_frames.get_frame_texture("walk", 0)
+			var texture       = sprite_frames.get_frame_texture("WALK", 0)
 				Get frame size:
 			var texture_size  = texture.get_size()
 				This is not the end, you will get the texture size, not the node real size, then you need to
@@ -441,13 +441,13 @@ public partial class Hideo : CharacterBody2D
 		if (velocity.X != 0)
 		{
 			velocity = velocity.Normalized() * Speed;
-			animatedSprite2D.Animation = "walk";
+			animatedSprite2D.Animation = "WALK";
 			animatedSprite2D.FlipV = false;
 
 			// See the note below about boolean assignment.
 			animatedSprite2D.FlipH = velocity.X < 0;
 		}
-		else if (animatedSprite2D.Animation != "uppercut" && animatedSprite2D.Animation != "kick")
+		else if (animatedSprite2D.Animation != "UPPERCUT" && animatedSprite2D.Animation != "KICK")
 		{
 			animatedSprite2D.Animation = "IDLE";
 		}
@@ -465,10 +465,10 @@ public partial class Hideo : CharacterBody2D
 		if (Mathf.Abs(velocity.X) > 0)
 		{
 			velocity = velocity.Normalized() * Speed;
-			animatedSprite2D.Play("walk");
+			animatedSprite2D.Play("WALK");
 			animatedSprite2D.FlipH = velocity.X > 0;
 		}
-		else if (!animatedSprite2D.Animation.Equals("uppercut") && !animatedSprite2D.Animation.Equals("kick"))
+		else if (!animatedSprite2D.Animation.Equals("UPPERCUT") && !animatedSprite2D.Animation.Equals("KICK"))
 		{
 			animatedSprite2D.Play("IDLE");
 		}

@@ -324,7 +324,7 @@ public partial class Mel : CharacterBody2D
 		var animatedSprite2D = GetNode<AnimatedSprite2D>("Sprite");
 		string anim_name = animatedSprite2D.Animation;
 
-		if (anim_name == "kick" || anim_name == "uppercut")
+		if (anim_name == "KICK" || anim_name == "UPPERCUT")
 		{
 			if (!animatedSprite2D.Animation.Equals("walk"))
 			{
@@ -554,11 +554,11 @@ public partial class Mel : CharacterBody2D
 		//if (Input.IsActionPressed("move_up"))
 		//	velocity.Y -= 1;
 
-		if (Input.IsActionPressed("up_1") && !animatedSprite2D.Animation.Equals("uppercut"))
-			animatedSprite2D.Play("uppercut");
+		if (Input.IsActionPressed("up_1") && !animatedSprite2D.Animation.Equals("UPPERCUT"))
+			animatedSprite2D.Play("UPPERCUT");
 
-		if (Input.IsActionPressed("down_1") && !animatedSprite2D.Animation.Equals("kick"))
-			animatedSprite2D.Play("kick");
+		if (Input.IsActionPressed("down_1") && !animatedSprite2D.Animation.Equals("KICK"))
+			animatedSprite2D.Play("KICK");
 
 		//if (Input.IsActionPressed("change_scene"))
 		//	SwitchToNextScene();
@@ -608,7 +608,7 @@ public partial class Mel : CharacterBody2D
 			// See the note below about boolean assignment.
 			animatedSprite2D.FlipH = velocity.X < 0;
 		}
-		else if (animatedSprite2D.Animation != "uppercut" && animatedSprite2D.Animation != "kick")
+		else if (animatedSprite2D.Animation != "UPPERCUT" && animatedSprite2D.Animation != "KICK")
 		{
 			animatedSprite2D.Animation = "IDLE";
 		}
@@ -629,7 +629,7 @@ public partial class Mel : CharacterBody2D
 			animatedSprite2D.Play("walk");
 			animatedSprite2D.FlipH = velocity.X < 0;
 		}
-		else if (!animatedSprite2D.Animation.Equals("uppercut") && !animatedSprite2D.Animation.Equals("kick"))
+		else if (!animatedSprite2D.Animation.Equals("UPPERCUT") && !animatedSprite2D.Animation.Equals("KICK"))
 		{
 			animatedSprite2D.Play("IDLE");
 		}
