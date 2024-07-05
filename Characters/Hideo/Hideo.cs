@@ -162,7 +162,7 @@ public partial class Hideo : CharacterBody2D
 	{
 		States = GetNode<Node>("State");
 		ScreenSize = GetViewportRect().Size;
-		GetNode<AnimatedSprite2D>("Sprite").Play("idle");
+		GetNode<AnimatedSprite2D>("Sprite").Play("IDLE");
 		//sceneSwitcher = GetNode<FightSceneSwitcher>("FightSceneSwitcher");
 		//GetNode<AnimatedSprite2D>("Sprite").Connect("animation_finished", OnAnimationFinished());
 
@@ -193,7 +193,7 @@ public partial class Hideo : CharacterBody2D
 		states = GetNode<Label>("State");
 		GD.Print("HIDEO: _READY: Informações sobre states: ", states);
 		GD.Print("HIDEO: _READY: Informações sobre states.text: ", states.Text);
-		anim = GetNode<AnimationPlayer>("Sprite2D/AnimationPlayer");
+		// anim = GetNode<AnimationPlayer>("Sprite2D/AnimationPlayer");
 		hurtbox = GetNode<Area2D>("Hurtbox");
 		parrybox = GetNode<Area2D>("Parrybox");
 		sprite = GetNode<Sprite2D>("Sprite2D");
@@ -263,7 +263,7 @@ public partial class Hideo : CharacterBody2D
 		{
 			if (!animatedSprite2D.Animation.Equals("walk"))
 			{
-				animatedSprite2D.Play("idle");
+				animatedSprite2D.Play("IDLE");
 			}
 		}
 	}
@@ -449,7 +449,7 @@ public partial class Hideo : CharacterBody2D
 		}
 		else if (animatedSprite2D.Animation != "uppercut" && animatedSprite2D.Animation != "kick")
 		{
-			animatedSprite2D.Animation = "idle";
+			animatedSprite2D.Animation = "IDLE";
 		}
 		/*
 
@@ -470,7 +470,7 @@ public partial class Hideo : CharacterBody2D
 		}
 		else if (!animatedSprite2D.Animation.Equals("uppercut") && !animatedSprite2D.Animation.Equals("kick"))
 		{
-			animatedSprite2D.Play("idle");
+			animatedSprite2D.Play("IDLE");
 		}
 
 		Position += velocity * (float)delta;

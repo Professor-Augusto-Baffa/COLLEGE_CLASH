@@ -19,6 +19,10 @@ centered = false
 
 [node name="Flow" type="FlowContainer" parent="."]
 layout_mode = 0
+offset_left = 100.0
+offset_top = 100.0
+offset_right = 100.0
+offset_bottom = 100.0
 script = ExtResource("2_urvtw")
 
 [node name="BoardSceneSwitcher" type="Node" parent="."]

@@ -69,7 +69,12 @@ func get_transition(delta):
 		return states.AIR
 
 	if reset_modulate() == true:
+			if parent.sprite != null:
+				print("STATEMACHINEMEL: reset_modulate(): parent.sprite: ", parent.sprite)
+			else:
+				print("STATEMACHINEMEL: reset_modulate(): parent.sprite É NULL")
 			parent.sprite.set_modulate(Color(1, 1, 1, 1))
+			
 
 	if Ledge() == true:
 		parent._frame()
@@ -997,7 +1002,7 @@ func enter_state(new_state, _old_state):
 	match new_state:
 		states.STAND:
 			print("2) O parent é: " + str(get_parent().name))
-			parent.PlayAnimation('IDLE')
+			#parent.PlayAnimation('IDLE')
 			print("3) O parent é: " + str(get_parent().name))
 			if parent.states != null:
 				print("parent.states NÃO é null: " + str(parent.states));

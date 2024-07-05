@@ -100,7 +100,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_eosln")
 }],
 "loop": true,
-"name": &"idle",
+"name": &"IDLE",
 "speed": 4.0
 }, {
 "frames": [{
@@ -135,7 +135,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_nckl0")
 }],
 "loop": false,
-"name": &"kick",
+"name": &"KICK",
 "speed": 15.0
 }, {
 "frames": [{
@@ -158,7 +158,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_drers")
 }],
 "loop": false,
-"name": &"uppercut",
+"name": &"UPPERCUT",
 "speed": 14.0
 }, {
 "frames": [{
@@ -166,7 +166,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_686ww")
 }],
 "loop": true,
-"name": &"walk",
+"name": &"WALK",
 "speed": 5.0
 }]
 
@@ -184,7 +184,7 @@ script = ExtResource("2_q0jdv")
 position = Vector2(0, -88)
 scale = Vector2(2.26973, 2.34353)
 sprite_frames = SubResource("SpriteFrames_dlkir")
-animation = &"uppercut"
+animation = &"WALK"
 
 [node name="CollisionBox" type="CollisionShape2D" parent="."]
 position = Vector2(7, -100)
