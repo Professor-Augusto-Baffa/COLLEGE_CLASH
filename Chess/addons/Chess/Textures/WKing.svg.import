@@ -5,6 +5,7 @@ type="CompressedTexture2D"
 uid="uid://bgeifkewhw83q"
 path="res://.godot/imported/WKing.svg-5f9994c6fce6552c1635ddc28330b4ee.ctex"
 metadata={
+"has_editor_variant": true,
 "vram_texture": false
 }
 
@@ -16,7 +17,7 @@ dest_files=["res://.godot/imported/WKing.svg-5f9994c6fce6552c1635ddc28330b4ee.ct
 [params]
 
 compress/mode=0
-compress/high_quality=false
+compress/high_quality=true
 compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
@@ -32,6 +33,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
-svg/scale=1.0
-editor/scale_with_editor_scale=false
-editor/convert_colors_with_editor_theme=false
+svg/scale=2.0
+editor/scale_with_editor_scale=true
+editor/convert_colors_with_editor_theme=true
