@@ -174,20 +174,7 @@ public partial class Mel : CharacterBody2D
 		//var targetNode = testStageScene.GetNode<Node2D>("MEL");	
 		Global global = (Global)GetNode("/root/Global");
 
-		//isInitialized = GlobalScene.isInitialized;
-
-		//GD.Print("global.isInitializedMel: ", global.isInitializedMel);
-		if (global.isInitializedMel)
-		{
-			Load();
-		}
-		else
-		{
-			global.ExecuteOnceMel();
-		}
-		//isBoot = false;
-		///---
-
+		GD.Print("MEL sendo inicializado...");
 		GroundL = GetNode<RayCast2D>("Raycasts/GroundL");
 		GroundR = GetNode<RayCast2D>("Raycasts/GroundR");
 		Ledge_Grab_F = GetNode<RayCast2D>("Raycasts/Ledge_Grab_F");
@@ -203,6 +190,22 @@ public partial class Mel : CharacterBody2D
 
 		// Define a posição global de gun_pos
 		gun_pos.GlobalPosition = new Vector2(100, 200);
+
+		//isInitialized = GlobalScene.isInitialized;
+
+		//GD.Print("global.isInitializedMel: ", global.isInitializedMel);
+		if (global.isInitializedMel)
+		{
+			Load();
+		}
+		else
+		{
+			global.ExecuteOnceMel();
+		}
+		//isBoot = false;
+		///---
+
+
 	}
 
 	public void Save()
@@ -326,7 +329,7 @@ public partial class Mel : CharacterBody2D
 
 		if (anim_name == "KICK" || anim_name == "UPPERCUT")
 		{
-			if (!animatedSprite2D.Animation.Equals("walk"))
+			if (!animatedSprite2D.Animation.Equals("WALK"))
 			{
 				animatedSprite2D.Play("IDLE");
 			}
@@ -528,7 +531,7 @@ public partial class Mel : CharacterBody2D
 		
 		if (velocity.X != 0)
 		{
-			animatedSprite2D.Animation = "walk";
+			animatedSprite2D.Animation = "WALK";
 			animatedSprite2D.FlipV = false;
 
 			// See the note below about boolean assignment.
@@ -626,7 +629,7 @@ public partial class Mel : CharacterBody2D
 		if (Mathf.Abs(velocity.X) > 0)
 		{
 			velocity = velocity.Normalized() * Speed;
-			animatedSprite2D.Play("walk");
+			animatedSprite2D.Play("WALK");
 			animatedSprite2D.FlipH = velocity.X < 0;
 		}
 		else if (!animatedSprite2D.Animation.Equals("UPPERCUT") && !animatedSprite2D.Animation.Equals("KICK"))

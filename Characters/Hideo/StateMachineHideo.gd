@@ -71,9 +71,9 @@ func get_transition(delta):
 	if reset_modulate() == true:
 		if parent.sprite != null:
 				print("STATEMACHINEHIDEO: reset_modulate(): parent.sprite: ", parent.sprite)
-			else:
-				print("STATEMACHINEHIDEO: reset_modulate(): parent.sprite É NULL")
-			parent.sprite.set_modulate(Color(1, 1, 1, 1))
+		else:
+			print("STATEMACHINEHIDEO: reset_modulate(): parent.sprite É NULL")
+		parent.sprite.set_modulate(Color(1, 1, 1, 1))
 
 	if Ledge() == true:
 		parent._frame()

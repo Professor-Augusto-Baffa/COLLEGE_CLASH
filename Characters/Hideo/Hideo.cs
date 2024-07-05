@@ -171,20 +171,7 @@ public partial class Hideo : CharacterBody2D
 		//var targetNode = testStageScene.GetNode<Node2D>("MEL");	
 		Global global = (Global)GetNode("/root/Global");
 
-		//isInitialized = GlobalScene.isInitialized;
-
-		//GD.Print("global.isInitializedHideo: ", global.isInitializedHideo);
-		if (global.isInitializedHideo)
-		{
-			Load();
-		}
-		else
-		{
-			global.ExecuteOnceHideo();
-		}
-		//isBoot = false;
-		///---
-
+		GD.Print("HIDEO sendo inicializado...");
 		GroundL = GetNode<RayCast2D>("Raycasts/GroundL");
 		GroundR = GetNode<RayCast2D>("Raycasts/GroundR");
 		Ledge_Grab_F = GetNode<RayCast2D>("Raycasts/Ledge_Grab_F");
@@ -200,6 +187,21 @@ public partial class Hideo : CharacterBody2D
 
 		// Define a posição global de gun_pos
 		gun_pos.GlobalPosition = new Vector2(100, 200);
+
+		//isInitialized = GlobalScene.isInitialized;
+
+		//GD.Print("global.isInitializedHideo: ", global.isInitializedHideo);
+		if (global.isInitializedHideo)
+		{
+			Load();
+		}
+		else
+		{
+			global.ExecuteOnceHideo();
+		}
+		//isBoot = false;
+		///---
+
 	}
 
 	public void Save()
