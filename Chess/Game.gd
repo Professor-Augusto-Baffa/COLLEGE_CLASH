@@ -45,7 +45,7 @@ func _ready() -> void:
 
 	# nova partida
 	elif global.isInitializedBoard == true && global.isActuallyInitializedBoard == false:
-		print("TRUE FALSE")
+		print("TRUE FALSE")	
 		flow_node.Regular_Game()
 		global.isActuallyInitializedBoard = true;
 

@@ -33,13 +33,15 @@ func _ready():
 
 		# Define cores alternadas para o tabuleiro
 			var style = StyleBoxFlat.new()
-			if (Number_X + Number_Y) % 2 == 0:
-				style.bg_color = Color(0.8, 0.8, 0.8) # Cor clara
-			else:
-				style.bg_color = Color(0.2, 0.2, 0.2) # Cor escura
-				
-			temp.add_stylebox_override("normal", style)
+			#style.bg_color = Color(0.6, 0.6, 0.6, 1)
 
+			if (Number_X + Number_Y) % 2 == 0:
+				style.bg_color = Color8(243,242,244,255) # Cor clara
+			else:
+				style.bg_color = Color8(82,167,67,255) # Cor escura
+
+			temp.add_theme_stylebox_override("normal", style)
+			#temp.Stylebox
 			add_child(temp)
 
 			Number_X += 1
