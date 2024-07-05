@@ -516,6 +516,11 @@ public partial class Hideo : CharacterBody2D
 		airJump = airJumpMax;
 	}
 
+	public void ResetLedge()
+	{
+		last_ledge = false;
+	}
+
 	public Node2D CreateHitbox(float width, float height, float damage, float angle, float baseKb, float kbScaling, float duration, string type, Vector2 points, float angleFlipper, float hitlag = 1)
 	{
 		Node2D hitboxInstance = (Node2D)hitbox.Instantiate();

@@ -73,14 +73,14 @@ func get_transition(delta):
 				print("STATEMACHINEMEL: reset_modulate(): parent.sprite: ", parent.sprite)
 			else:
 				print("STATEMACHINEMEL: reset_modulate(): parent.sprite É NULL")
-			parent.sprite.set_modulate(Color(1, 1, 1, 1))
+			parent.set_modulate(Color(1, 1, 1, 1))
 			
 
 	if Ledge() == true:
 		parent._frame()
 		return states.LEDGE_CATCH
 	else:
-		parent.reset_ledge()
+		parent.ResetLedge()
 
 	if Input.is_action_just_pressed("attack_%s" % id)&&TILT() == true:
 		parent._frame()
