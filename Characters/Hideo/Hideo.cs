@@ -191,6 +191,8 @@ public partial class Hideo : CharacterBody2D
 		Ledge_Grab_B = GetNode<RayCast2D>("Raycasts/Ledge_Grab_B");
 		gun_pos = GetNode<Node2D>("gun_pos");
 		states = GetNode<Label>("State");
+		GD.Print("HIDEO: _READY: Informações sobre states: ", states);
+		GD.Print("HIDEO: _READY: Informações sobre states.text: ", states.Text);
 		anim = GetNode<AnimationPlayer>("Sprite2D/AnimationPlayer");
 		hurtbox = GetNode<Area2D>("Hurtbox");
 		parrybox = GetNode<Area2D>("Parrybox");

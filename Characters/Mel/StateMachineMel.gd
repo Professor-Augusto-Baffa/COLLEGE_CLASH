@@ -69,7 +69,7 @@ func get_transition(delta):
 		return states.AIR
 
 	if reset_modulate() == true:
-		parent.sprite.set_modulate(Color(1, 1, 1, 1))
+			parent.sprite.set_modulate(Color(1, 1, 1, 1))
 
 	if Ledge() == true:
 		parent._frame()
@@ -209,8 +209,8 @@ func get_transition(delta):
 					return states.RUN
 			else:
 				if parent.frame >= parent.dash_duration - 1:
-					for state in states:
-						if state != "JUMP_SQUAT":
+					for statie in states:
+						if statie != "JUMP_SQUAT":
 							parent._frame()
 							return states.STAND
 
@@ -292,8 +292,8 @@ func get_transition(delta):
 
 			else:
 				if parent.frame >= parent.dash_duration - 1:
-					for state in states:
-						if state != "JUMP_SQUAT":
+					for statie in states:
+						if statie != "JUMP_SQUAT":
 							return states.STAND
 
 		states.WALK:
@@ -375,7 +375,8 @@ func get_transition(delta):
 					parent.lag_frames = 0
 					parent.reset_Jumps()
 					return states.STAND
-				parent.lag_frames = 0
+
+			parent.lag_frames = 0
 
 		states.AIR_DODGE:
 			if parent.frame == 1:
@@ -992,14 +993,15 @@ func get_transition(delta):
 				if parent.is_on_floor() == false:
 					AIRMOVEMENT()
 
-func enter_state(new_state, old_state):
+func enter_state(new_state, _old_state):
 	match new_state:
 		states.STAND:
 			print("2) O parent é: " + str(get_parent().name))
 			parent.PlayAnimation('IDLE')
 			print("3) O parent é: " + str(get_parent().name))
 			if parent.states != null:
-				print("parent.states: " + str(parent.states))
+				print("parent.states NÃO é null: " + str(parent.states));
+				print("parent.states.text: " + str(parent.states.text));
 			else:
 				print("parent.states é null")
 				
@@ -1118,7 +1120,7 @@ func enter_state(new_state, old_state):
 			parent.PlayAnimation('UP_TILT')
 			parent.states.text = str('UP_TILT')
 
-func exit_state(old_state, new_state):
+func exit_state(_old_state, _new_state):
 	pass
 
 func state_includes(state_array):
@@ -1183,19 +1185,21 @@ func AIRMOVEMENT():
 func Landing():
 	if state_includes([states.AIR, states.NAIR, states.UAIR, states.BAIR, states.FAIR, states.DAIR, states.FREE_FALL]):
 		if (parent.GroundL.is_colliding() or parent.GroundR.is_colliding()) and parent.velocity.y >= 0:
-				var collider = parent.GroundL.get_collider()
+				var _collider = parent.GroundL.get_collider()
 				parent.frame = 0
 				if parent.velocity.y > 0:
 					parent.velocity.y = 0
 				parent.fastfall = false
+				print("STATEMACHINEMEL: Landing() rodou OK")
 				return true
 			
 		elif parent.GroundR.is_colliding() and parent.velocity.y > 0:
-				var collider2 = parent.GroundR.get_collider()
+				var _collider2 = parent.GroundR.get_collider()
 				parent.frame = 0
 				if parent.velocity.y > 0:
 					parent.velocity.y = 0
 				parent.fastfall = false
+				print("STATEMACHINEMEL: Landing() rodou OK")
 				return true
 
 func Falling():
@@ -1280,9 +1284,9 @@ func can_roll():
 
 var temp_body
 var temp_state
-func grabbed(body, state):
+func grabbed(body, statie):
 	temp_body = body
-	temp_state = state
+	temp_state = statie
 
 var kbx
 var kby

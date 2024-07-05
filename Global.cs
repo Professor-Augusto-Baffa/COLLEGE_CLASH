@@ -49,12 +49,12 @@ public partial class Global : Node
 			return;
 		}
 
-		GD.Print("Nome da cena: " + testStageScene.Name);
+		//GD.Print("Nome da cena: " + testStageScene.Name);
 		var targetNode = testStageScene.GetNode<Node2D>("MEL");
 
 		if (targetNode != null)
 		{
-			GD.Print("Nó encontrado: " + targetNode.Name);
+			//GD.Print("Nó encontrado: " + targetNode.Name);
 			targetNode.GlobalPosition = new Vector2(-175, 190);
 		}
 		else

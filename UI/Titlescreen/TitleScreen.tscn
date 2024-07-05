@@ -12,6 +12,7 @@
 
 [sub_resource type="SystemFont" id="SystemFont_b2rks"]
 font_names = PackedStringArray("Arial")
+subpixel_positioning = 0
 multichannel_signed_distance_field = true
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ri6kv"]
@@ -19,6 +20,7 @@ size = Vector2(600, 99)
 
 [sub_resource type="SystemFont" id="SystemFont_tshhf"]
 font_names = PackedStringArray("Arial")
+subpixel_positioning = 0
 multichannel_signed_distance_field = true
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t5m1m"]

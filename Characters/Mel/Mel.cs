@@ -194,7 +194,8 @@ public partial class Mel : CharacterBody2D
 		Ledge_Grab_B = GetNode<RayCast2D>("Raycasts/Ledge_Grab_B");
 		gun_pos = GetNode<Node2D>("gun_pos");
 		states = GetNode<Label>("State");
-		GD.Print("Informações sobre states: ", states, states.Text);
+		GD.Print("MEL: _READY: Informações sobre states: ", states);
+		GD.Print("MEL: _READY: Informações sobre states.text: ", states.Text);
 		anim = GetNode<AnimationPlayer>("Sprite2D/AnimationPlayer");
 		hurtbox = GetNode<Area2D>("Hurtbox");
 		parrybox = GetNode<Area2D>("Parrybox");
@@ -666,7 +667,7 @@ public partial class Mel : CharacterBody2D
 		}
 	*/
 
-	public void ResetFrame()
+	public void Frame()
 	{
 		frame = 0;
 	}

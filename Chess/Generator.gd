@@ -96,7 +96,7 @@ func Summon(Piece_Name: String, color: int):
 			Piece = Bishop.new()
 			Piece.name = "Bishop"
 	Piece.Item_Color = color
-	Piece.position = Vector2(Tile_X_Size / 2, Tile_Y_Size / 2)
+	Piece.position = Vector2(Tile_X_Size / 2.0, Tile_Y_Size / 2.0)
 	return Piece
 
 """

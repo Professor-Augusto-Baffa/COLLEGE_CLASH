@@ -384,10 +384,10 @@ text = "
 horizontal_alignment = 1
 
 [node name="State" type="Label" parent="."]
-offset_left = -61.0
-offset_top = -204.0
-offset_right = 30.0
-offset_bottom = -181.0
+offset_left = -69.0
+offset_top = -211.0
+offset_right = 22.0
+offset_bottom = -188.0
 scale = Vector2(1.5, 1.5)
 text = "State"
 horizontal_alignment = 1
