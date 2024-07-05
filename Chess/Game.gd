@@ -50,7 +50,7 @@ func _ready() -> void:
 		global.isActuallyInitializedBoard = true;
 
 	
-func _process(float) -> void:
+func _process(_fl0at) -> void:
 	if Input.is_action_just_pressed("change_scene"):
 		switch_to_next_scene()
 

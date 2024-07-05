@@ -8,7 +8,7 @@ extends FlowContainer
 
 @export var background_texture: Texture
 
-var board_size = Vector2(Board_X_Size*Tile_X_Size, Board_Y_Size*Tile_Y_Size)
+var board_size = Vector2(Board_X_Size * Tile_X_Size, Board_Y_Size * Tile_Y_Size)
 
 signal send_location
 
@@ -16,7 +16,7 @@ func _ready():
 	#centralize_board()
 
 	# stop negative numbers from happening
-	if Board_X_Size < 0 || Board_Y_Size < 0:
+	if Board_X_Size < 0||Board_Y_Size < 0:
 		return
 	var Number_X = 0
 	var Number_Y = 0
@@ -30,11 +30,21 @@ func _ready():
 			temp.connect("pressed", func():
 				emit_signal("send_location", temp.name))
 			temp.set_name(str(Number_X) + "-" + str(Number_Y))
+
+		# Define cores alternadas para o tabuleiro
+			var style = StyleBoxFlat.new()
+			if (Number_X + Number_Y) % 2 == 0:
+				style.bg_color = Color(0.8, 0.8, 0.8) # Cor clara
+			else:
+				style.bg_color = Color(0.2, 0.2, 0.2) # Cor escura
+				
+			temp.add_stylebox_override("normal", style)
+
 			add_child(temp)
+
 			Number_X += 1
 		Number_Y += 1
 		Number_X = 0
-	
 
 func Regular_Game():
 	print("Regular Game")

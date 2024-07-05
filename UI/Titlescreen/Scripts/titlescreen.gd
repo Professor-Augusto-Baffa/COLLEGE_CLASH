@@ -13,7 +13,7 @@ enum States{
 	EXIT
 }
 
-func _process(delta):
+func _process(_delta):
 	#When pressing select, Pointer checks which button it's on, and triggers its button
 	if Input.is_action_just_pressed("ui_select_1") or Input.is_action_just_pressed("ui_select_2"):
 		var dec = getpointer.get_overlapping_areas()

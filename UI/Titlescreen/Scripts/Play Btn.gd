@@ -14,8 +14,8 @@ func _on_pressed():
 		get_tree().change_scene_to_file(path)
 
 
-func _on_Area2D_area_entered(area):
+func _on_Area2D_area_entered(_area):
 	emit_signal("focus_entered")
 
-func _on_Area2D_area_exited(area):
+func _on_Area2D_area_exited(_area):
 	emit_signal("focus_exited")
