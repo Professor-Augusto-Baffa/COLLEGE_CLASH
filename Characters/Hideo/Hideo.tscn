@@ -7,6 +7,10 @@
 [ext_resource type="Texture2D" uid="uid://cnc5weoemkqoa" path="res://Characters/Hideo/Sprites/hideo_walk.png" id="4_t8sdb"]
 [ext_resource type="Texture2D" uid="uid://bqimpu7qi4gqt" path="res://Characters/Hideo/Sprites/hideo_uppercut2.png" id="5_g8c6w"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_686ww"]
+atlas = ExtResource("4_t8sdb")
+region = Rect2(0, 0, 78, 76)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_pg60g"]
 atlas = ExtResource("2_vbvr7")
 region = Rect2(0, 0, 78, 89)
@@ -83,12 +87,16 @@ region = Rect2(65, 78, 65, 78)
 atlas = ExtResource("5_g8c6w")
 region = Rect2(130, 78, 65, 78)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_686ww"]
-atlas = ExtResource("4_t8sdb")
-region = Rect2(0, 0, 78, 76)
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_dlkir"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_686ww")
+}],
+"loop": true,
+"name": &"DASH",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_pg60g")
@@ -160,14 +168,6 @@ animations = [{
 "loop": false,
 "name": &"UPPERCUT",
 "speed": 14.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_686ww")
-}],
-"loop": true,
-"name": &"WALK",
-"speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xsyio"]
@@ -175,7 +175,7 @@ size = Vector2(4.40652, 1.22293)
 
 [node name="Hideo" type="CharacterBody2D"]
 script = ExtResource("1_dgln0")
-id = 1
+id = 2
 
 [node name="StateMachine" type="Node2D" parent="."]
 script = ExtResource("2_q0jdv")
@@ -184,7 +184,7 @@ script = ExtResource("2_q0jdv")
 position = Vector2(0, -88)
 scale = Vector2(2.26973, 2.34353)
 sprite_frames = SubResource("SpriteFrames_dlkir")
-animation = &"WALK"
+animation = &"DASH"
 
 [node name="CollisionBox" type="CollisionShape2D" parent="."]
 position = Vector2(2, -87)

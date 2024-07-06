@@ -85,7 +85,7 @@ public partial class Mel : CharacterBody2D
 	public bool connected;
 
 	// Ground Variables
-	//public int dash_duration = 10;
+	public int dash_duration = 10;
 
 	//Landing Variables
 	public int landing_frames = 0;
@@ -329,7 +329,7 @@ public partial class Mel : CharacterBody2D
 
 		if (anim_name == "KICK" || anim_name == "UPPERCUT")
 		{
-			if (!animatedSprite2D.Animation.Equals("WALK"))
+			if (!animatedSprite2D.Animation.Equals("DASH"))
 			{
 				animatedSprite2D.Play("IDLE");
 			}
@@ -629,7 +629,7 @@ public partial class Mel : CharacterBody2D
 		if (Mathf.Abs(velocity.X) > 0)
 		{
 			velocity = velocity.Normalized() * Speed;
-			animatedSprite2D.Play("WALK");
+			animatedSprite2D.Play("DASH");
 			animatedSprite2D.FlipH = velocity.X < 0;
 		}
 		else if (!animatedSprite2D.Animation.Equals("UPPERCUT") && !animatedSprite2D.Animation.Equals("KICK"))
