@@ -171,7 +171,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xsyio"]
-size = Vector2(4.0773, 1.40567)
+size = Vector2(4.40652, 1.22293)
 
 [node name="Hideo" type="CharacterBody2D"]
 script = ExtResource("1_dgln0")
@@ -187,7 +187,7 @@ sprite_frames = SubResource("SpriteFrames_dlkir")
 animation = &"WALK"
 
 [node name="CollisionBox" type="CollisionShape2D" parent="."]
-position = Vector2(7, -100)
+position = Vector2(2, -87)
 scale = Vector2(39.4869, 142.281)
 shape = SubResource("RectangleShape2D_xsyio")
 
@@ -202,19 +202,19 @@ shape = SubResource("RectangleShape2D_xsyio")
 [node name="Ledge_Grab_B" type="RayCast2D" parent="Raycasts"]
 
 [node name="Frames" type="Label" parent="."]
-offset_left = -64.0
-offset_top = -152.0
-offset_right = 64.0
-offset_bottom = -129.0
-text = "
-"
+offset_left = -94.0
+offset_top = -241.0
+offset_right = 34.0
+offset_bottom = -218.0
+scale = Vector2(1.5, 1.5)
+text = "45"
 horizontal_alignment = 1
 
 [node name="State" type="Label" parent="."]
-offset_left = -64.0
-offset_top = -200.0
-offset_right = 27.0
-offset_bottom = -177.0
+offset_left = -68.0
+offset_top = -212.0
+offset_right = 23.0
+offset_bottom = -189.0
 scale = Vector2(1.5, 1.5)
 text = "State
 "

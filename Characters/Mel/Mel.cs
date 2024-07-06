@@ -824,7 +824,7 @@ public partial class Mel : CharacterBody2D
 	}
 
 	// Special Attacks
-	bool NeutralSpecial()
+	public bool NeutralSpecial()
 	{
 		if (frame == 4)
 		{
@@ -838,7 +838,7 @@ public partial class Mel : CharacterBody2D
 	}
 
 	// Tilt Attacks
-	bool Jab()
+	public bool Jab()
 	{
 		if (frame == 2)
 		{
@@ -860,7 +860,7 @@ public partial class Mel : CharacterBody2D
 		return false;
 	}
 
-	bool Jab_1()
+	public bool Jab_1()
 	{
 		if (frame == 1)
 		{
@@ -882,7 +882,7 @@ public partial class Mel : CharacterBody2D
 		return false;
 	}
 
-	bool DownTilt()
+	public bool DownTilt()
 	{
 		if (frame == 5)
 		{
@@ -896,7 +896,7 @@ public partial class Mel : CharacterBody2D
 		return false;
 	}
 
-	bool UpTilt()
+	public bool UpTilt()
 	{
 		if (frame == 5)
 		{
@@ -910,7 +910,7 @@ public partial class Mel : CharacterBody2D
 		return false;
 	}
 
-	bool ForwardTilt()
+	public bool ForwardTilt()
 	{
 		if (frame == 3)
 		{
@@ -925,7 +925,7 @@ public partial class Mel : CharacterBody2D
 	}
 
 	// Air attacks
-	bool Nair()
+	public bool NAir()
 	{
 		if (frame == 1)
 		{
@@ -956,7 +956,7 @@ public partial class Mel : CharacterBody2D
 		return false;
 	}
 
-	bool Uair()
+	public bool UAir()
 	{
 		if (frame == 2)
 		{
@@ -973,7 +973,7 @@ public partial class Mel : CharacterBody2D
 		return false;
 	}
 
-	bool Bair()
+	public bool BAir()
 	{
 		if (frame == 2)
 		{
@@ -1004,7 +1004,7 @@ public partial class Mel : CharacterBody2D
 		return false;
 	}
 
-	bool Fair()
+	public bool FAir()
 	{
 		if (frame == 2 || frame == 11)
 		{
@@ -1017,7 +1017,7 @@ public partial class Mel : CharacterBody2D
 		return false;
 	}
 
-	bool Dair()
+	public bool DAir()
 	{
 		if (frame == 2 || frame == 5 || frame == 9 || frame == 14)
 		{
