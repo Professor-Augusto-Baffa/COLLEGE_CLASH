@@ -94,7 +94,7 @@ public partial class Mel : CharacterBody2D
 	//Air Variables
 	public int jump_squat = 3;
 	public bool fastfall = false;
-	public int airJump = 0;
+	public int airJump;
 	[Export]
 	public int airJumpMax = 1;
 
@@ -138,8 +138,8 @@ public partial class Mel : CharacterBody2D
 	public Sprite2D sprite;
 
 	//main attributes
-	public int RUNSPEED = 340 * 2;
-	public int DASHSPEED = 390 * 2;
+	public int RUNSPEED = 340 /* 2*/;
+	public int DASHSPEED = 390 /* 2*/;
 	public int WALKSPEED = 200 * 2;
 	public int GRAVITY = 1800 * 2;
 	public int JUMPFORCE = 500 * 2;
@@ -161,6 +161,7 @@ public partial class Mel : CharacterBody2D
 
 	public override void _Ready()
 	{
+		airJump = 2;
 		//States = GetNode<Node>("State");
 		ScreenSize = GetViewportRect().Size;
 		GetNode<AnimatedSprite2D>("Sprite").Play("IDLE");
@@ -625,7 +626,7 @@ public partial class Mel : CharacterBody2D
 		}
 		*/
 
-
+		
 		if (Mathf.Abs(velocity.X) > 0)
 		{
 			velocity = velocity.Normalized() * Speed;
@@ -640,6 +641,7 @@ public partial class Mel : CharacterBody2D
 		Position += velocity * (float)delta;
 
 		GetNode<Label>("Frames").Text = frame.ToString();
+		GetNode<Label>("AirJump").Text = airJump.ToString();
 		GetNode<Label>("Health").Text = percentage.ToString();
 		GD.Print("states.Text é : " + states.Text);
 		selfState = states.Text;

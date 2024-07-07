@@ -136,8 +136,8 @@ public partial class Hideo : CharacterBody2D
 	public Sprite2D sprite;
 
 	//main attributes
-	public int RUNSPEED = 340 * 2;
-	public int DASHSPEED = 390 * 2;
+	public int RUNSPEED = 340 /* 2*/;
+	public int DASHSPEED = 390 /* 2*/;
 	public int WALKSPEED = 200 * 2;
 	public int GRAVITY = 1800 * 2;
 	public int JUMPFORCE = 500 * 2;
@@ -477,7 +477,9 @@ public partial class Hideo : CharacterBody2D
 
 		Position += velocity * (float)delta;
 
+
 		GetNode<Label>("Frames").Text = frame.ToString();
+		GetNode<Label>("AirJump").Text = airJump.ToString();
 		GetNode<Label>("Health").Text = percentage.ToString();
 		selfState = states.Text;
 
@@ -542,8 +544,14 @@ public partial class Hideo : CharacterBody2D
 
 	public int Direction()
 	{
-		// Your implementation of the Direction method
-		return 1; // Placeholder
+		if (Ledge_Grab_F.GetCollisionPoint().X > 0)
+		{
+			return 1;
+		}
+		else
+		{
+			return -1;
+		}
 	}
 
 	public void CreateGrabbox(float width, float height, float damage, float duration, Vector2 points)

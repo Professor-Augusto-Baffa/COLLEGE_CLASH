@@ -176,6 +176,7 @@ size = Vector2(4.40652, 1.22293)
 [node name="Hideo" type="CharacterBody2D"]
 script = ExtResource("1_dgln0")
 id = 2
+airJumpMax = 2
 
 [node name="StateMachine" type="Node2D" parent="."]
 script = ExtResource("2_q0jdv")
@@ -218,6 +219,16 @@ offset_bottom = -189.0
 scale = Vector2(1.5, 1.5)
 text = "State
 "
+horizontal_alignment = 1
+
+[node name="AirJump" type="Label" parent="."]
+auto_translate_mode = 1
+offset_left = -54.0
+offset_top = -308.0
+offset_right = 7.0
+offset_bottom = -283.0
+scale = Vector2(2, 2)
+text = "99"
 horizontal_alignment = 1
 
 [connection signal="animation_finished" from="Sprite" to="." method="OnAnimationFinished"]

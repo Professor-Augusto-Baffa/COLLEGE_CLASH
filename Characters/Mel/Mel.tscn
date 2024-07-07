@@ -351,6 +351,7 @@ size = Vector2(4.0773, 1.3143)
 [node name="MEL" type="CharacterBody2D" groups=["Persist"]]
 script = ExtResource("1_pf0ew")
 id = 1
+airJumpMax = 2
 
 [node name="StateMachine" type="Node2D" parent="."]
 script = ExtResource("2_53ik5")
@@ -395,5 +396,14 @@ scale = Vector2(1.5, 1.5)
 text = "State"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="AirJump" type="Label" parent="."]
+offset_left = -54.0
+offset_top = -308.0
+offset_right = 7.0
+offset_bottom = -283.0
+scale = Vector2(2, 2)
+text = "99B"
+horizontal_alignment = 1
 
 [connection signal="animation_finished" from="Sprite" to="." method="OnAnimationFinished"]
