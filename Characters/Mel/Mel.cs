@@ -559,10 +559,10 @@ public partial class Mel : CharacterBody2D
 		//if (Input.IsActionPressed("move_up"))
 		//	velocity.Y -= 1;
 
-		if (Input.IsActionPressed("up_1") && !animatedSprite2D.Animation.Equals("UPPERCUT"))
+		if (Input.IsActionPressed("attack_1") && !animatedSprite2D.Animation.Equals("UPPERCUT"))
 			animatedSprite2D.Play("UPPERCUT");
 
-		if (Input.IsActionPressed("down_1") && !animatedSprite2D.Animation.Equals("KICK"))
+		if (Input.IsActionPressed("special_1") && !animatedSprite2D.Animation.Equals("KICK"))
 			animatedSprite2D.Play("KICK");
 
 		//if (Input.IsActionPressed("change_scene"))
@@ -829,6 +829,8 @@ public partial class Mel : CharacterBody2D
 	// Special Attacks
 	public bool NeutralSpecial()
 	{
+		//Kick();
+
 		if (frame == 4)
 		{
 			CreateProjectile(1, 0, new Vector2(50, 0));
@@ -886,6 +888,20 @@ public partial class Mel : CharacterBody2D
 	}
 
 	public bool DownTilt()
+	{
+		if (frame == 5)
+		{
+			CreateHitbox(40, 20, 8, 90, 70, 50, 3, "normal", new Vector2(64, 32), 0, 1);
+			// My version: CreateHitbox(40, 20, 8, 90, 3, 120, 3, "normal", new Vector2(64, 32), 0, 1);
+		}
+		if (frame >= 10)
+		{
+			return true;
+		}
+		return false;
+	}
+
+	public bool Kick()
 	{
 		if (frame == 5)
 		{

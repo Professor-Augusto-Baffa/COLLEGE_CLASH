@@ -397,10 +397,10 @@ public partial class Hideo : CharacterBody2D
 		//	velocity.Y -= 1;
 
 
-		if (Input.IsActionPressed("up_2") && !animatedSprite2D.Animation.Equals("UPPERCUT"))
+		if (Input.IsActionPressed("attack_2") && !animatedSprite2D.Animation.Equals("UPPERCUT"))
 			animatedSprite2D.Play("UPPERCUT");
 
-		if (Input.IsActionPressed("down_2") && !animatedSprite2D.Animation.Equals("KICK"))
+		if (Input.IsActionPressed("special_2") && !animatedSprite2D.Animation.Equals("KICK"))
 			animatedSprite2D.Play("KICK");
 
 		//if (Input.IsActionPressed("change_scene"))
@@ -722,6 +722,20 @@ public partial class Hideo : CharacterBody2D
 	}
 
 	public bool DownTilt()
+	{
+		if (frame == 5)
+		{
+			CreateHitbox(40, 20, 8, 90, 70, 50, 3, "normal", new Vector2(64, 32), 0, 1);
+			// My version: CreateHitbox(40, 20, 8, 90, 3, 120, 3, "normal", new Vector2(64, 32), 0, 1);
+		}
+		if (frame >= 10)
+		{
+			return true;
+		}
+		return false;
+	}
+
+	public bool Kick()
 	{
 		if (frame == 5)
 		{

@@ -361,7 +361,7 @@ texture_filter = 1
 position = Vector2(0, -99.5)
 scale = Vector2(1, 0.995)
 sprite_frames = SubResource("SpriteFrames_qtpjy")
-animation = &"IDLE"
+animation = &"KICK"
 
 [node name="CollisionBox" type="CollisionShape2D" parent="."]
 position = Vector2(15, -96)

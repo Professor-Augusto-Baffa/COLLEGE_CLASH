@@ -34,6 +34,7 @@ func _ready():
 	add_state('JAB')
 	add_state('JAB_1')
 	add_state('DOWN_TILT')
+	add_state('KICK')
 	add_state("UP_TILT")
 	add_state('FORWARD_TILT')
 	add_state('NEUTRAL_SPECIAL')
@@ -742,12 +743,12 @@ func get_transition(delta):
 				if parent.projectile_cooldown == 0:
 					parent.projectile_cooldown += 1
 					parent.Frame()
-					parent.NEUTRAL_SPECIAL()
+					parent.NeutralSpecial()
 			if parent.frame < 14:
 				if Input.is_action_just_pressed("special_%s" % id):
 					parent.Frame()
 					return states.NEUTRAL_SPECIAL
-			if parent.NEUTRAL_SPECIAL() == true:
+			if parent.NeutralSpecial() == true:
 				if AIREAL() == true:
 					return states.AIR
 				else:
@@ -785,8 +786,8 @@ func get_transition(delta):
 			AIRMOVEMENT()
 			if parent.frame == 0:
 				print('nair')
-				parent.NAIR()
-			if parent.NAIR() == true:
+				parent.NAir()
+			if parent.NAir() == true:
 				parent.lag_frames = 0
 				parent.Frame()
 				return states.AIR
@@ -801,8 +802,8 @@ func get_transition(delta):
 			AIRMOVEMENT()
 			if parent.frame == 0:
 				print('uair')
-				parent.UAIR()
-			if parent.UAIR() == true:
+				parent.UAir()
+			if parent.UAir() == true:
 				parent.lag_frames = 0
 				parent.Frame()
 				return states.AIR
@@ -847,8 +848,8 @@ func get_transition(delta):
 			AIRMOVEMENT()
 			if parent.frame == 0:
 				print('bair')
-				parent.DAIR()
-			if parent.DAIR() == true:
+				parent.DAir()
+			if parent.DAir() == true:
 				parent.lag_frames = 0
 				return states.AIR
 			else:
@@ -884,15 +885,15 @@ func get_transition(delta):
 						parent.velocity.x = -parent.DASHSPEED
 					parent.velocity.x = parent.velocity.x + parent.TRACTION * 20
 					parent.velocity.x = clampf(parent.velocity.x, parent.velocity.x, 0)
-				parent.JAB()
-			if parent.JAB() == true:
+				parent.Jab()
+			if parent.Jab() == true:
 				if Input.is_action_pressed("down_%s" % id):
 					parent.Frame()
 					return states.CROUCH
 				else:
 					parent.Frame()
 					return states.STAND
-			if parent.JAB() == false:
+			if parent.Jab() == false:
 				parent.Frame()
 				return states.JAB_1
 		states.JAB_1:
@@ -907,8 +908,8 @@ func get_transition(delta):
 						parent.velocity.x = -parent.DASHSPEED
 					parent.velocity.x = parent.velocity.x + parent.TRACTION * 20
 					parent.velocity.x = clampf(parent.velocity.x, parent.velocity.x, 0)
-				parent.JAB_1()
-			if parent.JAB_1() == true:
+				parent.Jab_1()
+			if parent.Jab_1() == true:
 				if Input.is_action_pressed("down_%s" % id):
 					parent.Frame()
 					return states.CROUCH
@@ -918,7 +919,7 @@ func get_transition(delta):
 
 		states.DOWN_TILT:
 			if parent.frame == 0:
-				parent.DOWN_TILT()
+				parent.DownTilt()
 				pass
 			if parent.frame >= 1:
 				if parent.velocity.x > 0:
@@ -927,7 +928,7 @@ func get_transition(delta):
 				elif parent.velocity.x < 0:
 					parent.velocity.x += parent.TRACTION * 3
 					parent.velocity.x = clampf(parent.velocity.x, parent.velocity.x, 0)
-			if parent.DOWN_TILT() == true:
+			if parent.DownTilt() == true:
 				if Input.is_action_pressed("down_%s" % id):
 					parent.Frame()
 					return states.CROUCH
@@ -938,7 +939,7 @@ func get_transition(delta):
 		states.UP_TILT:
 			if parent.frame == 0:
 				parent.Frame()
-				parent.UP_TILT()
+				parent.UpTilt()
 			if parent.frame >= 1:
 				if parent.velocity.x > 0:
 					parent.velocity.x += - parent.TRACTION * 3
@@ -946,14 +947,14 @@ func get_transition(delta):
 				elif parent.velocity.x < 0:
 					parent.velocity.x += parent.TRACTION * 3
 					parent.velocity.x = clampf(parent.velocity.x, parent.velocity.x, 0)
-			if parent.UP_TILT() == true:
+			if parent.UpTilt() == true:
 				parent.Frame()
 				return states.STAND
 
 		states.FORWARD_TILT:
 			if parent.frame == 0:
 				parent.Frame()
-				parent.FORWARD_TILT()
+				parent.ForwardTilt()
 			if parent.frame <= 1:
 				if parent.velocity.x > 0:
 					if parent.velocity.x > parent.DASHSPEED:
@@ -965,7 +966,7 @@ func get_transition(delta):
 						parent.velocity.x = -parent.DASHSPEED
 					parent.velocity.x = parent.velocity.x + parent.TRACTION * 2
 					parent.velocity.x = clampf(parent.velocity.x, parent.velocity.x, 0)
-			if parent.FORWARD_TILT() == true:
+			if parent.ForwardTilt() == true:
 				if Input.is_action_pressed("left_%s" % id):
 					if parent.velocity.x < - parent.DASHSPEED:
 						parent.velocity.x = -parent.DASHSPEED
@@ -1127,6 +1128,9 @@ func enter_state(new_state, _old_state):
 		states.DOWN_TILT:
 			parent.PlayAnimation('DOWN_TILT')
 			parent.states.text = str('DOWN_TILT')
+		states.KICK:
+			parent.PlayAnimation('KICK')
+			parent.states.text = str('KICK')
 		states.FORWARD_TILT:
 			parent.PlayAnimation('FORWARD_TILT')
 			parent.states.text = str('FORWARD_TILT')
