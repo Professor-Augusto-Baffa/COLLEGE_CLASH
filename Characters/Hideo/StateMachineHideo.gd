@@ -159,6 +159,14 @@ func get_transition(delta):
 
 		states.JUMP_SQUAT:
 			if parent.frame == parent.jump_squat:
+				if Input.is_action_pressed("shield_%s" % id) and Input.is_action_pressed("left_%s" % id) or Input.is_action_pressed("right_%s" % id):
+					if Input.is_action_pressed("left_%s" % id):
+						parent.velocity.x = parent.air_dodge_speed / parent.perfectWaveDashModifier
+					if Input.is_action_pressed("right_%s" % id):
+						parent.velocity.x = parent.air_dodge_speed / parent.perfectWaveDashModifier
+					parent.lag_frames = 6
+					parent.Frame()
+					return states.LANDING
 				if not Input.is_action_pressed("jump_%s" % id):
 					parent.velocity.x = lerpf(parent.velocity.x, 0, 0.08)
 					parent.Frame()

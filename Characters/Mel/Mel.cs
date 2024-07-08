@@ -86,6 +86,7 @@ public partial class Mel : CharacterBody2D
 
 	// Ground Variables
 	public int dash_duration = 10;
+	public int perfectWaveDashModifier = 1;
 
 	//Landing Variables
 	public int landing_frames = 0;

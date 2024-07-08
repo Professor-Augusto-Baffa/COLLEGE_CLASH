@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://b7o414rfcfpb3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_onmj7"]
+size = Vector2(37.5, 20.6)
+
+[node name="Ledge" type="Area2D"]
+collision_layer = 8
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Ledge"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_onmj7")

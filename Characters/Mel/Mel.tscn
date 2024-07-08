@@ -346,7 +346,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mb5fa"]
-size = Vector2(4.0773, 1.3143)
+size = Vector2(4.00133, 1.34944)
 
 [node name="MEL" type="CharacterBody2D" groups=["Persist"]]
 script = ExtResource("1_pf0ew")
@@ -358,24 +358,39 @@ script = ExtResource("2_53ik5")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-position = Vector2(0, -96)
+position = Vector2(0, -99.5)
+scale = Vector2(1, 0.995)
 sprite_frames = SubResource("SpriteFrames_qtpjy")
-animation = &"DASH"
+animation = &"IDLE"
 
 [node name="CollisionBox" type="CollisionShape2D" parent="."]
-position = Vector2(11, -92.5)
+position = Vector2(15, -96)
 scale = Vector2(39.4869, 142.281)
 shape = SubResource("RectangleShape2D_mb5fa")
 
 [node name="Raycasts" type="Node2D" parent="."]
 
 [node name="GroundL" type="RayCast2D" parent="Raycasts"]
+position = Vector2(-56, -8)
+target_position = Vector2(0, 10)
+collision_mask = 6
 
 [node name="GroundR" type="RayCast2D" parent="Raycasts"]
+position = Vector2(56, -8)
+target_position = Vector2(0, 10)
+collision_mask = 6
 
 [node name="Ledge_Grab_F" type="RayCast2D" parent="Raycasts"]
+position = Vector2(44, -176)
+scale = Vector2(3, 3)
+target_position = Vector2(20, 0)
+collision_mask = 8
 
 [node name="Ledge_Grab_B" type="RayCast2D" parent="Raycasts"]
+position = Vector2(-42, -176)
+scale = Vector2(3, 3)
+target_position = Vector2(-11, 0)
+collision_mask = 9
 
 [node name="Frames" type="Label" parent="."]
 offset_left = -71.0
@@ -403,7 +418,7 @@ offset_top = -308.0
 offset_right = 7.0
 offset_bottom = -283.0
 scale = Vector2(2, 2)
-text = "99B"
+text = "99"
 horizontal_alignment = 1
 
 [connection signal="animation_finished" from="Sprite" to="." method="OnAnimationFinished"]

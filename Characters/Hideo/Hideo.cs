@@ -84,6 +84,8 @@ public partial class Hideo : CharacterBody2D
 	// Ground Variables
 	public int dash_duration = 10;
 
+	public int perfectWaveDashModifier = 1;
+
 	// Landing variables
 	int landing_frames = 0;
 	int lag_frames = 0;
