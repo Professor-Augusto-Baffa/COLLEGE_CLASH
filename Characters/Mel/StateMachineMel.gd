@@ -408,7 +408,7 @@ func get_transition(delta):
 				parent.lag_frames = 3
 
 			if parent.frame >= 4 and parent.frame <= 10:
-				parent.hurtbox.disabled = true
+				#parent.hurtbox.disabled = true
 				if parent.frame == 5:
 					pass
 				parent.velocity.x = parent.velocity.x / 1.15
@@ -1233,7 +1233,7 @@ func Ledge():
 				parent.velocity.x = 0
 				parent.velocity.y = 0
 				self.parent.position.x = collider.position.x - 20
-				self.parent.position.y = collider.position.y - 2
+				self.parent.position.y 	= collider.position.y - 2
 				parent.Turn(false)
 				parent.ResetJumps()
 				parent.fastfall = false
