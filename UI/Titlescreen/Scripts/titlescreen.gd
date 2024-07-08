@@ -46,10 +46,12 @@ func _process(_delta):
 				current_state = States.PLAY
 
 func _ready():
+	music_player.volume_db = -10;
 	music_player.play()
 	clash_timer.start()
 	
 func _on_timer_timeout() -> void:
+	clash_sound.volume_db = -5;
 	clash_sound.play()
 
 func play():

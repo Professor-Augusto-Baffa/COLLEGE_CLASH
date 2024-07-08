@@ -7,12 +7,19 @@ public partial class TestStage : Node2D
 	public Mel mel;
 	public Hideo hideo;
 
+	public AudioStreamPlayer music_player;
+
 	public override void _Ready()
 	{
 		// Tente obter o nó FightSceneSwitcher
 		sceneSwitcher = GetNode<FightSceneSwitcher>("FightSceneSwitcher");
 		mel = GetNode<Mel>("MEL");
 		hideo = GetNode<Hideo>("HIDEO");
+		
+		music_player = GetNode<AudioStreamPlayer>("Music");
+		music_player.VolumeDb = -20;
+		music_player.Play();
+
 
 		//mel.GlobalPosition = new Vector2(-262, 209);
 		//hideo.GlobalPosition = new Vector2(236, 215);

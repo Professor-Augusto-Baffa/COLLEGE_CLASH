@@ -20,6 +20,8 @@ var save_path = "res://BoardStats.sav";
 
 var board_data = {};
 
+@onready var music_player = get_node("Music") as AudioStreamPlayer;
+
 func switch_to_next_scene() -> void:
 	save_board_state()
 	get_tree().change_scene_to_file("res://Stages/TestStage.tscn");
@@ -27,6 +29,7 @@ func switch_to_next_scene() -> void:
 func _ready() -> void:
 	var global = get_node("/root/Global")
 	var flow_node = get_node("Flow")
+	music_player.volume_db = -10;
 	#print(flow_node.Name)
 	
 	#print("global.isInitializedBoard: ", global.isInitializedBoard)
@@ -36,6 +39,7 @@ func _ready() -> void:
 		print("TRUE TRUE")
 		flow_node.Regular_Game()
 		load_board_state()
+		music_player.play()
 		
 
 	# escondido atrás da TestScene
@@ -48,6 +52,7 @@ func _ready() -> void:
 		print("TRUE FALSE")	
 		flow_node.Regular_Game()
 		global.isActuallyInitializedBoard = true;
+		music_player.play()
 
 	
 func _process(_fl0at) -> void:

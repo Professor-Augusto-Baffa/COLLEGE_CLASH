@@ -15,7 +15,6 @@ func _on_Ledge_body_entered(body):
 	else:
 		is_grabbed = true
 
-
 func _on_Ledge_body_exited(body):
 	print(connected_bodies.back())
 	if body == connected_bodies.back():
@@ -27,4 +26,3 @@ func _ready():
 		label.text = "Ledge_L"
 	else:
 		label.text = "Ledge_R"
-

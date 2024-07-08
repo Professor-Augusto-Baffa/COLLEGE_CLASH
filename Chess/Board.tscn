@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://cg6wmcm7mady7"]
+[gd_scene load_steps=6 format=3 uid="uid://cg6wmcm7mady7"]
 
 [ext_resource type="Script" path="res://Chess/Game.gd" id="1_kkmol"]
 [ext_resource type="Script" path="res://Chess/Generator.gd" id="2_urvtw"]
 [ext_resource type="Script" path="res://Chess/BoardSceneSwitcher.cs" id="3_85nwb"]
 [ext_resource type="Texture2D" uid="uid://lo03lg25oned" path="res://Art/chessboxing.jpg" id="4_ysrgu"]
+[ext_resource type="AudioStream" uid="uid://dnjkbwpy6io26" path="res://Music/Chessmaster 10th Edition Intro Movie [HQ] (mp3cut.net).mp3" id="5_spidb"]
 
 [node name="Board" type="Control"]
 layout_mode = 3
@@ -27,5 +28,8 @@ script = ExtResource("2_urvtw")
 
 [node name="BoardSceneSwitcher" type="Node" parent="."]
 script = ExtResource("3_85nwb")
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_spidb")
 
 [connection signal="send_location" from="Flow" to="." method="_on_flow_send_location"]

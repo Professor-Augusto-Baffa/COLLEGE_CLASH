@@ -1,21 +1,22 @@
-[gd_scene load_steps=3 format=3 uid="uid://kri2rjl3b48c"]
+[gd_scene load_steps=3 format=3 uid="uid://b7o414rfcfpb3"]
 
-[ext_resource type="Script" path="res://Stages/Stage Assets/Ledge.gd" id="1"]
+[ext_resource type="Script" path="res://Stages/Stage Assets/Ledge.gd" id="1_2oq1g"]
 
-[sub_resource type="RectangleShape2D" id="1"]
-size = Vector2(74, 41.2)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_onmj7"]
+size = Vector2(37.5, 20.6)
 
 [node name="Ledge" type="Area2D"]
 collision_layer = 8
-script = ExtResource("1")
+script = ExtResource("1_2oq1g")
 
 [node name="Label" type="Label" parent="."]
 offset_right = 40.0
-offset_bottom = 14.0
-text = "ledge"
+offset_bottom = 23.0
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("1")
+shape = SubResource("RectangleShape2D_onmj7")
 
 [connection signal="body_entered" from="." to="." method="_on_Ledge_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_Ledge_body_exited"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://ccmw7cc5t3vdx"]
+[gd_scene load_steps=19 format=3 uid="uid://ccmw7cc5t3vdx"]
 
 [ext_resource type="Script" path="res://Stages/TestStage.cs" id="1_majp2"]
 [ext_resource type="Texture2D" uid="uid://70rxfrhr0dhm" path="res://Stages/Smashville/1.png" id="2_2hkou"]
@@ -10,10 +10,13 @@
 [ext_resource type="Texture2D" uid="uid://qqaaeux8al5b" path="res://Stages/Smashville/103.png" id="5_qklme"]
 [ext_resource type="Script" path="res://FightSceneSwitcher.cs" id="5_rid8w"]
 [ext_resource type="Texture2D" uid="uid://dirbrig02o8qk" path="res://Stages/Smashville/Background.png" id="6_7vupd"]
-[ext_resource type="PackedScene" uid="uid://b7o414rfcfpb3" path="res://Stage Assets/Ledge.tscn" id="6_pnlr3"]
+[ext_resource type="PackedScene" uid="uid://b7o414rfcfpb3" path="res://Stages/Stage Assets/Ledge.tscn" id="6_pnlr3"]
 [ext_resource type="Texture2D" uid="uid://nsdx25l0i42c" path="res://Stages/Smashville/Stage1.png" id="7_uqpiy"]
 [ext_resource type="Script" path="res://Stages/Stage Assets/StageCamera.gd" id="8_tf2po"]
 [ext_resource type="Texture2D" uid="uid://clealic4pdled" path="res://Stages/Smashville/Stage2.png" id="8_uwpts"]
+[ext_resource type="AudioStream" uid="uid://dv7eb03ggn0gw" path="res://Music/Megaman X5 - X vs Zero 【Intense Symphonic Metal Cover】 (mp3cut.net).mp3" id="15_joco2"]
+[ext_resource type="Texture2D" uid="uid://b5hbadlybi5ry" path="res://Art/P1.png" id="16_jvcr3"]
+[ext_resource type="Texture2D" uid="uid://cajyark042pro" path="res://Art/P2.png" id="17_hcbxd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hknmw"]
 size = Vector2(965, 38)
@@ -137,3 +140,14 @@ z_index = 3
 position = Vector2(-63, 321)
 scale = Vector2(2.167, 2.167)
 texture = ExtResource("8_uwpts")
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_joco2")
+
+[node name="P1 Bar" type="Sprite2D" parent="."]
+position = Vector2(-344, 544)
+texture = ExtResource("16_jvcr3")
+
+[node name="P2 Bar" type="Sprite2D" parent="."]
+position = Vector2(216, 544)
+texture = ExtResource("17_hcbxd")
