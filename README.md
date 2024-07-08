@@ -1,4 +1,5 @@
-[![Presentation](https://github.com/Professor-Augusto-Baffa/COLLEGE_CLASH/assets/8205907/fe6228ed-f112-4517-b70d-c4b951e5ff2c)](https://www.youtube.com/watch?v=b_BKTRMtudU)
+[![Presentation](https://github.com/Professor-Augusto-Baffa/COLLEGE_CLASH/assets/8205907/35ae9b51-fb6d-4d0d-ad9a-927cd0870873)
+](https://www.youtube.com/watch?v=b_BKTRMtudU)
 
 # ♖♝♘♟♕♚_________________ COLLEGE CLASH ________________♚♕♟♘♝♖
 
